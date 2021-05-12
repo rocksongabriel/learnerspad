@@ -28,6 +28,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'users.apps.UsersConfig',
+
+    'rest_framework',
+    'rest_auth',
+    'corsheaders',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +132,36 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+
+# Rest Framework Settings
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning'
+}
+
+# CORS settings
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = (
+    # TODO - set this properly for production
+    'http://127.0.0.1:8080',
+    'http://127.0.0.1:8000',
+    "http://localhost:8000",
+    "http://localhost:8080"
+)
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:8080',
+    'http://127.0.0.1:8000',
+    "http://localhost:8000",
+    "http://localhost:8080"
+]
+
+# SIMPLE JWT SETTINGS
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10080),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30), # TODO -> Make the refresh time smaller, and use it to test for when the refresh token expires
+}

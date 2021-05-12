@@ -16,6 +16,8 @@ ipython = "==7.23.1"
 django-cors-headers = "==3.7.0"
 pytest-cov = "==2.11.1"
 markdown = "==3.3.4"
+django-rest-auth = "==0.9.5"
+werkzeug = "*"
 
 [dev-packages]
 

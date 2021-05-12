@@ -39,7 +39,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'LEARNERSPAD.urls'
+ROOT_URLCONF = 'LEARNERSPAD.config.urls'
 
 TEMPLATES = [
     {
@@ -57,7 +57,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'LEARNERSPAD.wsgi.application'
+WSGI_APPLICATION = 'LEARNERSPAD.config.wsgi.application'
 
 
 # Database

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import DeveloperUser
+from ..models import DeveloperUser, StudentUser
 
 
 class DeveloperUserRegistrationSerializer(serializers.HyperlinkedModelSerializer):
@@ -34,3 +34,10 @@ class DeveloperUserLoginSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DeveloperUser
         fields = ["username", "password"]
+
+
+class StudentUserRegistrationSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = StudentUser
+        fields = ["usernae", "email", "password"]

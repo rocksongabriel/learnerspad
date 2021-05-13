@@ -8,7 +8,7 @@ from ...tests.factories import DeveloperUserFactory, StudentUserFactory
 from ..serializers import (DeveloperUserLoginSerializer,
                            DeveloperUserRegistrationSerializer,
                            DeveloperUserRetrieveSerializer,
-                           DeveloperUserUpdateSerializer, StudentUserRegistrationSerializer)
+                           DeveloperUserUpdateSerializer, StudentUserRegistrationSerializer, StudentUserRetrieveSerializer)
 
 
 pytestmark = pytest.mark.django_db
@@ -130,3 +130,13 @@ class TestStudentUserSerializers:
 
         assert serializer.is_valid()
         assert serializer.errors == {}
+
+    def test_serialization__student_user_retrieve_serializer(self):
+        """test for the serialization of data of the student user retrieve serializer"""
+        user = StudentUserFactory.build()
+
+        serializer = StudentUserRetrieveSerializer(user)
+
+        assert serializer.data
+
+    

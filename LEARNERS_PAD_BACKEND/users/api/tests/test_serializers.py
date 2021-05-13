@@ -31,7 +31,7 @@ def test_deserialization__developer_user_registration_serializer():
 def test_serialization__developer_user_retrieve_serializer():
     user = DeveloperUserFactory.build()
 
-    url = reverse("users:developer-user-data", {"username", user.username})
+    url = reverse("users:developer-user-detail", kwargs={"username": user.username})
 
     context = {
         "request": Request(APIRequestFactory().get(url))

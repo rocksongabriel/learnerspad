@@ -2,7 +2,7 @@ import factory
 import pytest
 from django.urls import reverse
 from rest_framework.request import Request
-from rest_framework.test import APIClient, APIRequestFactory
+from rest_framework.test import APIRequestFactory
 
 from ...tests.factories import DeveloperUserFactory
 from ..serializers import (DeveloperUserLoginSerializer,
@@ -14,8 +14,10 @@ from ..serializers import (DeveloperUserLoginSerializer,
 pytestmark = pytest.mark.django_db
 
 class TestDeveloperUserSerializers:
-    
+    """Tests for the Serializers associated with the Developer User type"""
+
     def test_serialization__developer_user_registration_serializer(self):
+        """test for serializer of the developer user registration serializer"""
         user = DeveloperUserFactory.build()
         serializer = DeveloperUserRegistrationSerializer(user)
 
@@ -23,6 +25,7 @@ class TestDeveloperUserSerializers:
 
     
     def test_deserialization__developer_user_registration_serializer(self):
+        """test for deserialization of the developer user registration serializer"""
         json_data = factory.build(
             dict,
             FACTORY_CLASS = DeveloperUserFactory
@@ -35,6 +38,7 @@ class TestDeveloperUserSerializers:
 
     
     def test_serialization__developer_user_retrieve_serializer(self):
+        """test for serialization of the developer user retrieve serializer"""
         user = DeveloperUserFactory.build()
 
         url = reverse("users:developer-user-detail", kwargs={"username": user.username})
@@ -49,6 +53,7 @@ class TestDeveloperUserSerializers:
 
     
     def test_deserialization__developer_user_retrieve_serializer(self):
+        """test for deserialization of the developer user retrieve serialization"""
         json_data = factory.build(
             dict,
             FACTORY_CLASS = DeveloperUserFactory,
@@ -61,6 +66,7 @@ class TestDeveloperUserSerializers:
 
     
     def test_serialization__developer_user_update_serializer(self):
+        """test for serialization of the developer user update serializer"""
         user = DeveloperUserFactory.build()
 
         serializer = DeveloperUserUpdateSerializer(user)
@@ -69,6 +75,7 @@ class TestDeveloperUserSerializers:
 
     
     def test_deserialization__developer_user_update_serializer(self):
+        """test for the deserialization of the developer user update serializer"""
         json_data = factory.build(
             dict,
             FACTORY_CLASS = DeveloperUserFactory
@@ -81,6 +88,7 @@ class TestDeveloperUserSerializers:
 
     
     def test_serialization__developer_user_login_serializer(self):
+        """test for the serialization of the developer user login serializer"""
         user = DeveloperUserFactory.build()
         serializer = DeveloperUserLoginSerializer(user)
 
@@ -88,6 +96,7 @@ class TestDeveloperUserSerializers:
 
     
     def test_deserialization__developer_user_login_serializer(self):
+        """test for the deserialization of the developer user login serializer"""
         json_data = factory.build(
             dict,
             FACTORY_CLASS=DeveloperUserFactory

@@ -1,7 +1,7 @@
 import factory
 import pytest
 from ...tests.factories import DeveloperUserFactory
-from ..serializers import DeveloperUserRegistrationSerializer, DeveloperUserRetrieveSerializer, DeveloperUserUpdateSerializer
+from ..serializers import DeveloperUserLoginSerializer, DeveloperUserRegistrationSerializer, DeveloperUserRetrieveSerializer, DeveloperUserUpdateSerializer
 import factory
 from rest_framework.test import APIClient, APIRequestFactory
 from rest_framework.request import Request
@@ -69,6 +69,25 @@ def test_deserialization__developer_user_update_serializer():
     )
 
     serializer = DeveloperUserUpdateSerializer(data=json_data)
+
+    assert serializer.is_valid()
+    assert serializer.errors == {}
+
+@pytest.mark.django_db
+def test_serialization__developer_user_login_serializer():
+    user = DeveloperUserFactory.build()
+    serializer = DeveloperUserLoginSerializer(user)
+
+    assert serializer.data
+
+@pytest.mark.django_db
+def test_deserialization__developer_user_login_serializer():
+    json_data = factory.build(
+        dict,
+        FACTORY_CLASS=DeveloperUserFactory
+    )
+
+    serializer = DeveloperUserLoginSerializer(data=json_data)
 
     assert serializer.is_valid()
     assert serializer.errors == {}

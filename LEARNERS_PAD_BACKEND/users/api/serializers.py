@@ -54,3 +54,10 @@ class StudentUserRetrieveSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = StudentUser
         fields = ["id", "url", "username", "email", "first_name", "last_name"]
+
+
+class StudentUserUpdateSerializer(serializers.HyperlinkedModelSerializer):
+    
+    class Meta:
+        model = StudentUser
+        fields = ["username", "email", "first_name", "last_name"]

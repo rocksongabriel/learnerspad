@@ -27,3 +27,10 @@ class DeveloperUserUpdateSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DeveloperUser
         fields = ["username", "email", "first_name", "last_name"]
+
+
+class DeveloperUserLoginSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = DeveloperUser
+        fields = ["username", "password"]

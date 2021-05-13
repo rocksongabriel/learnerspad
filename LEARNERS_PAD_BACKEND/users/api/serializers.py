@@ -41,3 +41,16 @@ class StudentUserRegistrationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = StudentUser
         fields = ["username", "email", "password"]
+
+
+class StudentUserRetrieveSerializer(serializers.HyperlinkedModelSerializer):
+    url = serializers.HyperlinkedIdentityField(
+        view_name="users:student-user-detail",
+        lookup_field="username",
+        source="username",
+        lookup_url_kwarg="userame"
+    )
+
+    class Meta:
+        model = StudentUser
+        fields = ["id", "url", "username", "email", "first_name", "last_name"]

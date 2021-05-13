@@ -40,4 +40,4 @@ class StudentUserRegistrationSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = StudentUser
-        fields = ["usernae", "email", "password"]
+        fields = ["username", "email", "password"]

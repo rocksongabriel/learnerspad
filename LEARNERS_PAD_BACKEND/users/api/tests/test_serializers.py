@@ -4,11 +4,11 @@ from django.urls import reverse
 from rest_framework.request import Request
 from rest_framework.test import APIRequestFactory
 
-from ...tests.factories import DeveloperUserFactory
+from ...tests.factories import DeveloperUserFactory, StudentUserFactory
 from ..serializers import (DeveloperUserLoginSerializer,
                            DeveloperUserRegistrationSerializer,
                            DeveloperUserRetrieveSerializer,
-                           DeveloperUserUpdateSerializer)
+                           DeveloperUserUpdateSerializer, StudentUserRegistrationSerializer)
 
 
 pytestmark = pytest.mark.django_db
@@ -103,6 +103,30 @@ class TestDeveloperUserSerializers:
         )
 
         serializer = DeveloperUserLoginSerializer(data=json_data)
+
+        assert serializer.is_valid()
+        assert serializer.errors == {}
+
+
+class TestStudentUserSerializers:
+    """Tests for the student user type  serializers"""
+
+    def test_serialization__student_user_registration_serializer(self):
+        """test for the serialization of data of the student user registration serializer"""
+        user = StudentUserFactory.build()
+
+        serializer = StudentUserRegistrationSerializer(user)
+
+        assert serializer.data
+
+    def test_deserialization__student_user_registration_serializer(self):
+        """test for the deserialization of data of the student user registration serializer"""
+        json_data = factory.build(
+            dict,
+            FACTORY_CLASS = StudentUserFactory
+        )
+
+        serializer = StudentUserRegistrationSerializer(data=json_data)
 
         assert serializer.is_valid()
         assert serializer.errors == {}

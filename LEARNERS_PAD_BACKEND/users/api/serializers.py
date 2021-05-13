@@ -21,3 +21,9 @@ class DeveloperUserRetrieveSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = DeveloperUser
         fields = ["id", "url", "username", "email", "first_name", "last_name"]
+
+
+class DeveloperUserUpdateSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = DeveloperUser
+        fields = ["username", "email", "first_name", "last_name"]

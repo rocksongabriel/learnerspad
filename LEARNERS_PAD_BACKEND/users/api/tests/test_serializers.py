@@ -135,8 +135,25 @@ class TestStudentUserSerializers:
         """test for the serialization of data of the student user retrieve serializer"""
         user = StudentUserFactory.build()
 
-        serializer = StudentUserRetrieveSerializer(user)
+        url = reverse("users:student-user-detail", kwargs={"username": user.username})
+
+        context = {
+            "request": Request(APIRequestFactory().get(url))
+        }
+
+        serializer = StudentUserRetrieveSerializer(instance=user, context=context)
 
         assert serializer.data
 
+    def test_deserialization__student_user_retrieve_serializer(serlf):
+        """test for the deserialization of data of the student user retrive serializer"""
+        json_data = factory.build(
+            dict,
+            FACTORY_CLASS = StudentUserFactory
+        )
+
+        serializer = StudentUserRetrieveSerializer(data=json_data)
+
+        assert serializer.is_valid()
+        assert serializer.errors == {}
     

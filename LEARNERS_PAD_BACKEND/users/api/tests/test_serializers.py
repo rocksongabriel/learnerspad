@@ -40,3 +40,15 @@ def test_serialization__developer_user_retrieve_serializer():
     serializer = DeveloperUserRetrieveSerializer(instance=user, context=context)
 
     assert serializer.data
+
+@pytest.mark.django_db
+def test_deserialization__developer_user_retrieve_serializer():
+    json_data = factory.build(
+        dict,
+        FACTORY_CLASS = DeveloperUserFactory,
+    )
+
+    serializer = DeveloperUserRetrieveSerializer(data=json_data)
+
+    assert serializer.is_valid()
+    assert serializer.errors == {}

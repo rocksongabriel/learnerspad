@@ -40,7 +40,7 @@ class DeveloperUserProfile(models.Model):
         on_delete=models.CASCADE,
         related_name="developer_profile"
     )
-    bio = models.TextField(max_length=180)
+    bio = models.TextField(max_length=180, null=True, blank=True)
 
     def __str__(self) -> str:
         return f"{self.user.username} profile"
@@ -53,6 +53,7 @@ class StudentUserProfile(models.Model):
         on_delete=models.CASCADE,
         related_name="student_profile"
     )
+    bio = models.TextField(max_length=180, null=True, blank=True)
 
     def __str__(self) -> str:
         return f"{self.user.username} profile"

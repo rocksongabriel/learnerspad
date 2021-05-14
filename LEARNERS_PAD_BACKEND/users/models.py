@@ -1,9 +1,9 @@
-from enum import unique
 from django.db import models
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
+    """Custom user model"""
     class Types(models.TextChoices):
         DEVELOPER = "DEVELOPER", "Developer"
         STUDENT = "STUDENT", "Student"
@@ -19,16 +19,32 @@ class User(AbstractUser):
 
 
 class DeveloperUserManager(BaseUserManager):
+    """Custom manager for the developer user types"""
 
     def get_queryset(self, *args, **kwargs):
         return super().get_queryset(*args, **kwargs).filter(type=User.Types.DEVELOPER)
 
 
 class StudentUserManager(BaseUserManager):
+    """Custom manager for the student user types"""
 
     def get_queryset(self, *args, **kwargs):
         return super(*args, **kwargs).get_queryset().filter(type=User.Types.STUDENT)
+
+
+class DeveloperUserProfile(models.Model):
+    """Profile model for the developer user types"""
+
+    user = models.OneToOneField(
+        "users.DeveloperUser",
+        on_delete=models.CASCADE,
+        related_name="developer_profile"
+    )
+    bio = models.TextField(max_length=180)
+
+
 class DeveloperUser(User):
+    """Proxy model for the developer user type"""
 
     objects = DeveloperUserManager()
 
@@ -37,8 +53,13 @@ class DeveloperUser(User):
     class Meta:
         proxy = True
 
+    @property
+    def profile(self):
+        return self.developer_profile
+
 
 class StudentUser(User):
+    """Proxy model for the student user type"""
 
     objects = StudentUserManager()
 
@@ -46,3 +67,18 @@ class StudentUser(User):
 
     class Meta:
         proxy = True
+
+
+"""
+TODO
+
+! - difficulty in setting this
+todo - add a __str__ method to the DeveloperUserProfile 
+
+todo - add a StudentUserProfile
+todo - add signals that will create the User profiles after the user model has been created
+todo - add the extra fields to the respective serializers
+todo - test the serializers 
+todo - test the added signals
+todo - add an avatar field to the User model
+"""

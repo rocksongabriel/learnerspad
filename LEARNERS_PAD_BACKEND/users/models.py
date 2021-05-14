@@ -89,10 +89,6 @@ class StudentUser(User):
 """
 TODO
 
-todo - add a __str__ method to the DeveloperUserProfile 
-
-todo - add a StudentUserProfile
-todo - add signals that will create the User profiles after the user model has been created
 todo - add the extra fields to the respective serializers
 todo - test the serializers 
 todo - test the added signals

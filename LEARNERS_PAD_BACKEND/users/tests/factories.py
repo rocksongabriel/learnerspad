@@ -1,7 +1,9 @@
+from factory import Sequence
 from factory.django import DjangoModelFactory
 from factory.faker import Faker
-from factory import Sequence
-from ..models import DeveloperUser, StudentUser
+
+from ..models import (DeveloperUser, DeveloperUserProfile, StudentUser,
+                      StudentUserProfile)
 
 
 class DeveloperUserFactory(DjangoModelFactory):
@@ -26,3 +28,19 @@ class StudentUserFactory(DjangoModelFactory):
     first_name = Faker("first_name")
     last_name = Faker("last_name")
     password = "testpass1234"
+
+
+class DeveloperUserProfileFactory(DjangoModelFactory):
+
+    class Meta:
+        model = DeveloperUserProfile
+
+    bio = Faker("paragraph")
+
+
+class StudentUserProfileFactory(DjangoModelFactory):
+
+    class Meta:
+        model = StudentUserProfile
+    
+    bio = Faker("paragraph")

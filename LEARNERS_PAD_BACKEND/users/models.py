@@ -42,6 +42,8 @@ class DeveloperUserProfile(models.Model):
     )
     bio = models.TextField(max_length=180)
 
+    def __str__(self) -> str:
+        return f"{self.user.username} profile"
 
 class StudentUserProfile(models.Model):
     """Profile model for the student user types"""
@@ -52,6 +54,8 @@ class StudentUserProfile(models.Model):
         related_name="student_profile"
     )
 
+    def __str__(self) -> str:
+        return f"{self.user.username} profile"
 
 class DeveloperUser(User):
     """Proxy model for the developer user type"""
@@ -85,7 +89,6 @@ class StudentUser(User):
 """
 TODO
 
-! - difficulty in setting this
 todo - add a __str__ method to the DeveloperUserProfile 
 
 todo - add a StudentUserProfile

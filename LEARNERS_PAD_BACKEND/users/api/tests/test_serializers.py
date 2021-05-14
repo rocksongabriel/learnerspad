@@ -4,14 +4,21 @@ from django.urls import reverse
 from rest_framework.request import Request
 from rest_framework.test import APIRequestFactory
 
-from ...tests.factories import DeveloperUserFactory, StudentUserFactory
+from ...tests.factories import (DeveloperUserFactory,
+                                DeveloperUserProfileFactory,
+                                StudentUserFactory, StudentUserProfileFactory)
 from ..serializers import (DeveloperUserLoginSerializer,
+                           DeveloperUserProfileSerializer,
                            DeveloperUserRegistrationSerializer,
                            DeveloperUserRetrieveSerializer,
-                           DeveloperUserUpdateSerializer, StudentUserLoginSerializer, StudentUserRegistrationSerializer, StudentUserRetrieveSerializer, StudentUserUpdateSerializer)
-
+                           DeveloperUserUpdateSerializer,
+                           StudentUserLoginSerializer,
+                           StudentUserRegistrationSerializer,
+                           StudentUserRetrieveSerializer,
+                           StudentUserUpdateSerializer)
 
 pytestmark = pytest.mark.django_db
+
 
 class TestDeveloperUserSerializers:
     """Tests for the Serializers associated with the Developer User type"""
@@ -194,6 +201,28 @@ class TestStudentUserSerializers:
         )
 
         serializer = StudentUserLoginSerializer(data=json_data)
+
+        assert serializer.is_valid()
+        assert serializer.errors == {}
+
+
+class TestDeveloperUserProfileSerializer:
+    """Test the serializer associated with the developer user type profile"""
+
+    def test_serialization__developer_user_profile_serializer(self):
+        user = DeveloperUserProfileFactory.build()
+
+        serializer = DeveloperUserProfileSerializer(user)
+
+        assert serializer.data
+
+    def test_deserialization__developer_user_profile_serializer(self):
+        json_data = factory.build(
+            dict,
+            FACTORY_CLASS = DeveloperUserProfileFactory
+        )
+
+        serializer = DeveloperUserProfileSerializer(data=json_data)
 
         assert serializer.is_valid()
         assert serializer.errors == {}

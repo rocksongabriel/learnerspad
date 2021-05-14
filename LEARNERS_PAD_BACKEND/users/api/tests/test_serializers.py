@@ -12,7 +12,7 @@ from ..serializers import (DeveloperUserLoginSerializer,
                            DeveloperUserRegistrationSerializer,
                            DeveloperUserRetrieveSerializer,
                            DeveloperUserUpdateSerializer,
-                           StudentUserLoginSerializer,
+                           StudentUserLoginSerializer, StudentUserProfileSerializer,
                            StudentUserRegistrationSerializer,
                            StudentUserRetrieveSerializer,
                            StudentUserUpdateSerializer)
@@ -217,6 +217,28 @@ class TestDeveloperUserProfileSerializer:
         assert serializer.data
 
     def test_deserialization__developer_user_profile_serializer(self):
+        json_data = factory.build(
+            dict,
+            FACTORY_CLASS = DeveloperUserProfileFactory
+        )
+
+        serializer = DeveloperUserProfileSerializer(data=json_data)
+
+        assert serializer.is_valid()
+        assert serializer.errors == {}
+
+
+class TestStudentUserProfileSerializer:
+    """Tests for serialization and deserialization of the student user type profile serializer"""
+
+    def test_serialization__student_user_profile_serializer(self):
+        user = StudentUserProfileFactory.build()
+
+        serializer = StudentUserProfileSerializer(user)
+
+        assert serializer.data
+
+    def test_deserialization__student_user_profile_serializer(self):
         json_data = factory.build(
             dict,
             FACTORY_CLASS = DeveloperUserProfileFactory

@@ -11,6 +11,7 @@ class User(AbstractUser):
     base_type = Types.STUDENT
 
     type = models.CharField(max_length=40, default=Types.STUDENT, choices=Types.choices)
+    avatar = models.ImageField(upload_to="profile/avatar/", null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -90,8 +91,6 @@ class StudentUser(User):
 """
 TODO
 
-todo - add the extra fields to the respective serializers
-todo - test the serializers 
 todo - test the added signals
 todo - add an avatar field to the User model
 """

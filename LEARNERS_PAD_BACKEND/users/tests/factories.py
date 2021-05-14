@@ -1,4 +1,3 @@
-import factory
 from factory.django import DjangoModelFactory
 from factory.faker import Faker
 from factory import Sequence
@@ -10,7 +9,7 @@ class DeveloperUserFactory(DjangoModelFactory):
     class Meta:
         model = DeveloperUser
 
-    username = Sequence(lambda n: "devuser%d" %n)
+    username = Sequence(lambda n: "dev%d" %n)
     email = Faker("email")
     first_name = Faker("first_name")
     last_name = Faker("last_name")

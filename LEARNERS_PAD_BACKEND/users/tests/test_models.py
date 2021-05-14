@@ -1,6 +1,6 @@
 import pytest
 from .factories import DeveloperUserFactory, StudentUserFactory
-from ..models import DeveloperUser, StudentUser
+from ..models import DeveloperUser, StudentUser, DeveloperUserProfile, StudentUserProfile
 from .utils import get_user_data
 
 
@@ -50,3 +50,36 @@ class TestUserObjectCreation:
         user = StudentUser.objects.create(**user_data)
 
         assert user.type == "STUDENT"
+
+
+class TestUserProfileCreation:
+    """These tests test the creation of individual profiles for each user type"""
+
+    def test_developer_user_profile_creation(self):
+        """test the creation of a developer user profile"""
+        generated_user = DeveloperUserFactory.build()
+
+        user_data = get_user_data(generated_user)
+
+        user = DeveloperUser.objects.create(**user_data) 
+        user.save() # On save, the post save signal will create an associated profile
+
+        profile = DeveloperUserProfile.objects.get(user=user) # Try to get the profile associated with this user
+
+        assert profile # assert the profile
+        assert profile.user.username == generated_user.username
+
+    def test_student_user_profile_creation(self):
+        """test the creation of a student user profile"""
+        generated_user = StudentUserFactory.build()
+
+        user_data = get_user_data(generated_user)
+
+        user = StudentUser.objects.create(**user_data)
+        user.save()
+
+
+        profile = StudentUserProfile.objects.get(user=user)
+
+        assert profile
+        assert profile.user.username == generated_user.username 

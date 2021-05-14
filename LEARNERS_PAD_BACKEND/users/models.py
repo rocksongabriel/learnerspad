@@ -43,6 +43,16 @@ class DeveloperUserProfile(models.Model):
     bio = models.TextField(max_length=180)
 
 
+class StudentUserProfile(models.Model):
+    """Profile model for the student user types"""
+
+    user = models.OneToOneField(
+        "users.StudentUser",
+        on_delete=models.CASCADE,
+        related_name="student_profile"
+    )
+
+
 class DeveloperUser(User):
     """Proxy model for the developer user type"""
 
@@ -67,6 +77,9 @@ class StudentUser(User):
 
     class Meta:
         proxy = True
+
+    def profile(self):
+        return self.student_profile
 
 
 """

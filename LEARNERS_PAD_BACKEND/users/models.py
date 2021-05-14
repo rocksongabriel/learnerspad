@@ -93,4 +93,5 @@ TODO
 
 todo - test the added signals
 todo - add an avatar field to the User model
+todo - find a way to test the image field
 """

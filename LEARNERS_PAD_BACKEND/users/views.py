@@ -16,6 +16,8 @@ class DeveloperUserRegisterView(APIView):
         data = {}
         if serializer.is_valid():
             user = serializer.save()
+            user.set_password(serializer.validated_data["password"])
+            user.save()
             data["message"] = "User {} has been created successfully".format(user.username)
             return Response(data, status=status.HTTP_201_CREATED)
         else:

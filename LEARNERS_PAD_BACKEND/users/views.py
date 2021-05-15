@@ -1,7 +1,7 @@
 from rest_framework.generics import RetrieveAPIView
 from rest_framework import status
 from rest_framework.response import Response
-from .api.serializers import DeveloperUserRegistrationSerializer, DeveloperUserRetrieveSerializer, StudentUserRetrieveSerializer
+from .api.serializers import DeveloperUserRegistrationSerializer, DeveloperUserRetrieveSerializer, StudentUserRegistrationSerializer, StudentUserRetrieveSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
@@ -35,6 +35,13 @@ class DeveloperUserRetrieveView(RetrieveAPIView):
     serializer_class = DeveloperUserRetrieveSerializer
     lookup_field = "username"
     lookup_url_kwarg = "username"
+
+
+
+class StudentUserRegisterView(BaseUserRegisterView):
+    """APIView to create a student user instance"""
+
+    serializer = StudentUserRegistrationSerializer
 
 
 class StudentUserRetrieveView(RetrieveAPIView):

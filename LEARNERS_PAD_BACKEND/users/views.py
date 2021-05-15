@@ -1,7 +1,7 @@
 from rest_framework.generics import RetrieveAPIView
 from rest_framework import status
 from rest_framework.response import Response
-from .api.serializers import DeveloperUserRegistrationSerializer, DeveloperUserRetrieveSerializer, StudentUserRegistrationSerializer, StudentUserRetrieveSerializer
+from .api.serializers import DeveloperUserLoginSerializer, DeveloperUserRegistrationSerializer, DeveloperUserRetrieveSerializer, StudentUserRegistrationSerializer, StudentUserRetrieveSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
@@ -27,6 +27,25 @@ class DeveloperUserRegisterView(BaseUserRegisterView):
     """APIView to create a developer user instance"""
 
     serializer = DeveloperUserRegistrationSerializer
+
+
+# class DeveloperUserLoginView(APIView):
+#     """APIView to login a developer user"""
+
+#     # take the user username and password
+#     # send the data to the obtain_token endpoint
+#     # get the access and refresh tokens
+#     # make an api call to the retrieve endpoint
+#     # get the url field of the user
+#     # form the response of the operation
+
+#     def post(self, request):
+#         serializer = DeveloperUserLoginSerializer(data=request.data)
+#         if serializer.is_valid():
+#             username = serializer.validated_data["username"]
+#             password = serializer.validated_data["password"]
+
+
 
 
 class DeveloperUserRetrieveView(RetrieveAPIView):

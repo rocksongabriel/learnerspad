@@ -149,6 +149,6 @@ CORS_ALLOWED_ORIGINS = [
 from datetime import timedelta
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10080),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=30), # TODO -> Make the refresh time smaller, and use it to test for when the refresh token expires
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7), # TODO -> Make the refresh time smaller, and use it to test for when the refresh token expires
 }

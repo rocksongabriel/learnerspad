@@ -15,10 +15,10 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     # App urls
-    path("api", include("users.urls", namespace="users")),
+    path("api/", include("users.urls", namespace="users")),
 ]
 
 if settings.DEBUG:
     from django.conf.urls.static import static
-    
+
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

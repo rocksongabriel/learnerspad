@@ -1,10 +1,11 @@
 from django.urls import path
 
-from ..views import DeveloperUserRetrieveView, StudentUserRetrieveView
+from ..views import DeveloperUserRegisterView, DeveloperUserRetrieveView, StudentUserRetrieveView
 
 
 urlpatterns = [
     path("developer/retrieve/<str:username>/", DeveloperUserRetrieveView.as_view(), name="developer-user-detail"),
+    path("developer/create/", DeveloperUserRegisterView.as_view(), name="developer-user-create"),
 
     path("student/retrieve/<str:username>/", StudentUserRetrieveView.as_view(), name="student-user-detail"),
 ]

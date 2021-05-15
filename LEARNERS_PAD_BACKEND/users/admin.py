@@ -1,10 +1,10 @@
 from django.contrib import admin
-from django.contrib.admin.decorators import register
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import DeveloperUser, StudentUser, User
 
-class UserModelAdmin(admin.ModelAdmin):
+class UserModelAdmin(BaseUserAdmin):
     list_display = ["username", "email", "first_name", "last_name", "type", "last_login"]
-    readonly_fields = ["username", "email", "first_name", "last_name", "type", "last_login", "password", "is_staff", "is_superuser"]
+
 
 @admin.register(User)
 class UserAdmin(UserModelAdmin):

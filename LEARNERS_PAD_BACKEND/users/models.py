@@ -68,6 +68,8 @@ class DeveloperUser(User):
 
     class Meta:
         proxy = True
+        verbose_name = "Developer User"
+        verbose_name_plural = "Developer Users"
 
     @property
     def profile(self):
@@ -83,6 +85,8 @@ class StudentUser(User):
 
     class Meta:
         proxy = True
+        verbose_name = "Student User"
+        verbose_name_plural = "Student Users"
 
     def profile(self):
         return self.student_profile

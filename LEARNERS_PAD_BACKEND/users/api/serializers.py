@@ -7,6 +7,11 @@ class DeveloperUserRegistrationSerializer(serializers.HyperlinkedModelSerializer
     class Meta:
         model = DeveloperUser
         fields = ["username", "email", "password"]
+        extra_kwargs = {
+            "password": {
+                "write_only": True,
+            }
+        }
 
 
 class DeveloperUserRetrieveSerializer(serializers.HyperlinkedModelSerializer):
@@ -41,7 +46,11 @@ class StudentUserRegistrationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = StudentUser
         fields = ["username", "email", "password"]
-
+        extra_kwargs = {
+            "password": {
+                "write_only": True,
+            }
+        }
 
 class StudentUserRetrieveSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(
@@ -57,7 +66,7 @@ class StudentUserRetrieveSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class StudentUserUpdateSerializer(serializers.HyperlinkedModelSerializer):
-    
+
     class Meta:
         model = StudentUser
         fields = ["username", "email", "first_name", "last_name"]

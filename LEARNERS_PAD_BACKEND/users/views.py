@@ -1,9 +1,13 @@
+from rest_framework import response
 from rest_framework.generics import RetrieveAPIView
 from rest_framework import status
 from rest_framework.response import Response
 from .api.serializers import DeveloperUserLoginSerializer, DeveloperUserRegistrationSerializer, DeveloperUserRetrieveSerializer, StudentUserRegistrationSerializer, StudentUserRetrieveSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
+import requests
+from django.urls import reverse
+import json
 
 
 class BaseUserRegisterView(APIView):
@@ -29,23 +33,32 @@ class DeveloperUserRegisterView(BaseUserRegisterView):
     serializer = DeveloperUserRegistrationSerializer
 
 
-# class DeveloperUserLoginView(APIView):
-#     """APIView to login a developer user"""
+class DeveloperUserLoginView(APIView):
+    """APIView to login a developer user"""
 
-#     # take the user username and password
-#     # send the data to the obtain_token endpoint
-#     # get the access and refresh tokens
-#     # make an api call to the retrieve endpoint
-#     # get the url field of the user
-#     # form the response of the operation
+    def post(self, request):
+        data = {}
 
-#     def post(self, request):
-#         serializer = DeveloperUserLoginSerializer(data=request.data)
-#         if serializer.is_valid():
-#             username = serializer.validated_data["username"]
-#             password = serializer.validated_data["password"]
+        serializer = DeveloperUserLoginSerializer(data=request.data)
+        if serializer.is_valid():
+            username = serializer.validated_data["username"]
+            password = serializer.validated_data["password"]
 
+            # make api call to token endpoint for token
+            url = reverse("token_obtain_pair")
+            res = requests.post(url, data={
+                "username": username,
+                "password": password,
+            })
+            if res.status_code == 200:
+                data["message"] = "User logged in successfully"
+            data["token"] = json.loads(res.content)
+            data["retrieve_user_url"] = reverse("users:developer-user-detail", kwargs={"username": username})
 
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            data = serializer.errors
+            return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 
 class DeveloperUserRetrieveView(RetrieveAPIView):

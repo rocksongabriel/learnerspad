@@ -1,3 +1,4 @@
+from django.urls.base import reverse
 from rest_framework import serializers
 from ..models import DeveloperUser, DeveloperUserProfile, StudentUser, StudentUserProfile
 
@@ -34,13 +35,6 @@ class DeveloperUserUpdateSerializer(serializers.HyperlinkedModelSerializer):
         fields = ["username", "email", "first_name", "last_name"]
 
 
-class DeveloperUserLoginSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = DeveloperUser
-        fields = ["username", "password"]
-
-
 class StudentUserRegistrationSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
@@ -70,13 +64,6 @@ class StudentUserUpdateSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = StudentUser
         fields = ["username", "email", "first_name", "last_name"]
-
-
-class StudentUserLoginSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = StudentUser
-        fields = ["username", "password"]
 
 
 class DeveloperUserProfileSerializer(serializers.HyperlinkedModelSerializer):

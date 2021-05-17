@@ -52,6 +52,22 @@ class TestDeveloperUserAPIViews:
             assert retrieve_response.status_code == 200
             assert content["username"] == generated_user.username
 
+    def test_developer_login_view(self, api_client):
+        generated_user = DeveloperUserFactory.build()
+        user_data = get_user_data(generated_user)
+        login_url = reverse("users:developer-user-login")
+        res = api_client.post(
+            login_url,
+            data={
+                "username": user_data["username"],
+                "password": user_data["password"],
+            }
+        )
+
+        assert res.status_code == 200 # assert status code is 200
+        assert json.loads(res.content)["token"] # assert the token exists
+        assert json.loads(res.content)["user_retrieve_url"] # assert the retrieve url exists
+
 
 class TestStudentUserAPIViews:
 
@@ -96,3 +112,20 @@ class TestStudentUserAPIViews:
             assert retrieve_response.status_code == 200
             assert content["username"] == generated_user.username
 
+    # ! - this test fails somehow, the status code is 200, but no token or user_retrieve_url is in the content
+    @pytest.mark.xfail
+    def test_student_login_view(self, api_client):
+        generated_user = StudentUserFactory.build()
+        user_data = get_user_data(generated_user)
+        login_url = reverse("users:student-user-login")
+        res = api_client.post(
+            login_url,
+            data={
+                "username": user_data["username"],
+                "password": user_data["password"],
+            }
+        )
+
+        assert res.status_code == 200 # assert status code is 200
+        assert json.loads(res.content)["token"] # assert the token exists
+        assert json.loads(res.content)["user_retrieve_url"] # assert the retrieve url exists

@@ -7,12 +7,12 @@ from rest_framework.test import APIRequestFactory
 from users.tests.factories import (DeveloperUserFactory,
                                 DeveloperUserProfileFactory,
                                 StudentUserFactory, StudentUserProfileFactory)
-from users.api.serializers import (DeveloperUserLoginSerializer,
+from users.api.serializers import (
                            DeveloperUserProfileSerializer,
                            DeveloperUserRegistrationSerializer,
                            DeveloperUserRetrieveSerializer,
                            DeveloperUserUpdateSerializer,
-                           StudentUserLoginSerializer, StudentUserProfileSerializer,
+                            StudentUserProfileSerializer,
                            StudentUserRegistrationSerializer,
                            StudentUserRetrieveSerializer,
                            StudentUserUpdateSerializer)
@@ -94,27 +94,6 @@ class TestDeveloperUserSerializers:
         assert serializer.errors == {}
 
 
-    def test_serialization__developer_user_login_serializer(self):
-        """test for the serialization of the developer user login serializer"""
-        user = DeveloperUserFactory.build()
-        serializer = DeveloperUserLoginSerializer(user)
-
-        assert serializer.data
-
-
-    def test_deserialization__developer_user_login_serializer(self):
-        """test for the deserialization of the developer user login serializer"""
-        json_data = factory.build(
-            dict,
-            FACTORY_CLASS=DeveloperUserFactory
-        )
-
-        serializer = DeveloperUserLoginSerializer(data=json_data)
-
-        assert serializer.is_valid()
-        assert serializer.errors == {}
-
-
 class TestStudentUserSerializers:
     """Tests for the student user type  serializers"""
 
@@ -181,26 +160,6 @@ class TestStudentUserSerializers:
         )
 
         serializer = StudentUserUpdateSerializer(data=json_data)
-
-        assert serializer.is_valid()
-        assert serializer.errors == {}
-
-    def test_serializer__student_user_login_serializer(self):
-        """test for the serializer of data of the student user login serializer"""
-        user = StudentUserFactory.build()
-
-        serializer = StudentUserLoginSerializer(user)
-
-        assert serializer.data
-
-    def test_deserialization__student_user_login_serializer(self):
-        """test for the deserialization of data of the student user login serializer"""
-        json_data = factory.build(
-            dict,
-            FACTORY_CLASS=StudentUserFactory
-        )
-
-        serializer = StudentUserLoginSerializer(data=json_data)
 
         assert serializer.is_valid()
         assert serializer.errors == {}

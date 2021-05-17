@@ -31,14 +31,9 @@ class BaseUserRegisterView(APIView):
             return Response(data, status=status.HTTP_403_FORBIDDEN)
 
 
-class DeveloperUserRegisterView(BaseUserRegisterView):
-    """APIView to create a developer user instance"""
+class BaseUserLoginView(APIView):
 
-    serializer = DeveloperUserRegistrationSerializer
-
-
-class DeveloperUserLoginView(APIView):
-    """API view to log in a developer user"""
+    user_type = ""
 
     def post(self, request):
         req_data = request.data
@@ -50,7 +45,7 @@ class DeveloperUserLoginView(APIView):
                 "password": req_data["password"]
             }
         )
-        user_retrieve_url = reverse("users:developer-user-detail", kwargs={"username":req_data["username"]})
+        user_retrieve_url = reverse(f"users:{self.user_type}-user-detail", kwargs={"username":req_data["username"]})
         if res.status_code == 200:
             data = {}
             data["user_retrieve_url"] = user_retrieve_url
@@ -60,6 +55,16 @@ class DeveloperUserLoginView(APIView):
             data = json.loads(res.content)
             return Response(data)
 
+class DeveloperUserRegisterView(BaseUserRegisterView):
+    """APIView to create a developer user instance"""
+
+    serializer = DeveloperUserRegistrationSerializer
+
+
+class DeveloperUserLoginView(BaseUserLoginView):
+    """API view to log in a developer user"""
+
+    user_type = "developer"
 
 
 class DeveloperUserRetrieveView(RetrieveAPIView):
@@ -77,28 +82,10 @@ class StudentUserRegisterView(BaseUserRegisterView):
     serializer = StudentUserRegistrationSerializer
 
 
-class StudentUserLoginView(APIView):
+class StudentUserLoginView(BaseUserLoginView):
     """APIView to login a student user"""
 
-    def post(self, request):
-        req_data = request.data
-        url = "http://localhost:8000" + reverse("token_obtain_pair") # todo - modify how this is constructed so that it works in production
-        res = requests.post(
-            url,
-            data={
-                "username": req_data["username"],
-                "password": req_data["password"]
-            }
-        )
-        user_retrieve_url = reverse("users:student-user-detail", kwargs={"username":req_data["username"]})
-        if res.status_code == 200:
-            data = {}
-            data["user_retrieve_url"] = user_retrieve_url
-            data["token"] = json.loads(res.content)
-            return Response(data)
-        else:
-            data = json.loads(res.content)
-            return Response(data)
+    user_type = "student"
 
 
 class StudentUserRetrieveView(RetrieveAPIView):

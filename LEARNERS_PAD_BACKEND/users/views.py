@@ -50,10 +50,10 @@ class BaseUserLoginView(APIView):
             data = {}
             data["user_retrieve_url"] = user_retrieve_url
             data["token"] = json.loads(res.content)
-            return Response(data)
+            return Response(data, status=status.HTTP_200_OK)
         else:
             data = json.loads(res.content)
-            return Response(data)
+            return Response(data, status=status.HTTP_401_UNAUTHORIZED)
 
 class DeveloperUserRegisterView(BaseUserRegisterView):
     """APIView to create a developer user instance"""

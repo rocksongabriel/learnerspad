@@ -14,21 +14,24 @@ const routes = [
     path: "/login",
     name: "Login",
     component: () => {
-      import("../views/Login.vue");
+      return import(/* webpackChunkName: "login" */ "../views/Login.vue");
     },
   },
   {
     path: "/signup",
     name: "Signup",
     component: () => {
-      import("../views/Signup.vue");
+      return import(/* webpackChunkName: "signup" */ "../views/Signup.vue");
     },
   },
   {
     path: "/user/dashboard",
     name: "Dashboard",
     component: () => {
-      import("../views/Dashboard");
+      return import(/* webpackChunkName: "dashboard" */ "../views/Dashboard");
+    },
+    meta: {
+      requiresAuth: true,
     },
   },
 ];
@@ -37,6 +40,17 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);
+
+  if (requiresAuth) {
+    // if requires auth and current user data is not filled in the store
+    next({ name: "Login" });
+  } else {
+    next();
+  }
 });
 
 export default router;

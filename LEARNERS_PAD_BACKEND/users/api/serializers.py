@@ -32,9 +32,9 @@ class DeveloperUserRetrieveSerializer(serializers.HyperlinkedModelSerializer):
 
     url = serializers.HyperlinkedIdentityField(
         view_name="users:developer-user-detail",
-        source="username",
-        lookup_field="username",
-        lookup_url_kwarg="username"
+        source="uuid",
+        lookup_field="uuid",
+        lookup_url_kwarg="uuid"
     )
 
     class Meta:
@@ -62,9 +62,9 @@ class StudentUserRegistrationSerializer(serializers.HyperlinkedModelSerializer):
 class StudentUserRetrieveSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(
         view_name="users:student-user-detail",
-        lookup_field="username",
-        source="username",
-        lookup_url_kwarg="userame"
+        lookup_field="uuid",
+        source="uuid",
+        lookup_url_kwarg="uuid"
     )
 
     class Meta:

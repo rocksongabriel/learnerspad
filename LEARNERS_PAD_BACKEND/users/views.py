@@ -1,9 +1,10 @@
 import json
-from django.contrib.auth import get_user, get_user_model
+
 import jwt
 import requests
+from django.contrib.auth import get_user_model
 from django.urls import reverse
-from rest_framework import response, status
+from rest_framework import status
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -15,6 +16,7 @@ from .api.serializers import (DeveloperUserRegistrationSerializer,
                               DeveloperUserRetrieveSerializer,
                               StudentUserRegistrationSerializer,
                               StudentUserRetrieveSerializer)
+from .models import DeveloperUser, StudentUser
 
 User = get_user_model()
 
@@ -52,8 +54,9 @@ class DeveloperUserRetrieveView(RetrieveAPIView):
     """APIView to retrieve a particular developer user instance"""
 
     serializer_class = DeveloperUserRetrieveSerializer
-    lookup_field = "username"
-    lookup_url_kwarg = "username"
+    lookup_field = "uuid"
+    lookup_url_kwarg = "uuid"
+    queryset = DeveloperUser.objects.all()
 
 
 class StudentUserRegisterView(BaseUserRegisterView):
@@ -66,8 +69,9 @@ class StudentUserRetrieveView(RetrieveAPIView):
     """APIView to retrieve a particular student user instance"""
 
     serializer_class = StudentUserRetrieveSerializer
-    lookup_field = "username"
-    lookup_url_kwarg = "username"
+    lookup_field = "uuid"
+    lookup_url_kwarg = "uuid"
+    queryset = StudentUser.objects.all()
 
 
 
@@ -92,8 +96,9 @@ class UserLoginAPIView(APIView):
             data["token"] = json.loads(res.content)
 
             decoded_token = jwt.decode(data["token"]["access"], options={"verify_signature": False})
-            user = User.objects.get(uuid=decoded_token["uuid"])
-            user_retrieve_url = reverse(f"users:{user.type.lower()}-user-detail", kwargs={"username":request_data["username"]})
+            uuid = decoded_token["uuid"]
+            user = User.objects.get(uuid=uuid)
+            user_retrieve_url = reverse(f"users:{user.type.lower()}-user-detail", kwargs={"uuid": uuid})
 
             data["user_retrieve_url"] = user_retrieve_url
             data["message"] = "Login successful"

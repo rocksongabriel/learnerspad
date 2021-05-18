@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import DeveloperUser, StudentUser, User
 
 class UserModelAdmin(BaseUserAdmin):
-    list_display = ["username", "email", "first_name", "last_name", "type", "last_login"]
+    list_display = ["uuid", "username", "email", "first_name", "last_name", "type", "last_login"]
 
 
 @admin.register(User)

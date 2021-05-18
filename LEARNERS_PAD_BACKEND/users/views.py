@@ -96,6 +96,7 @@ class UserLoginAPIView(APIView):
             user_retrieve_url = reverse(f"users:{user.type.lower()}-user-detail", kwargs={"username":request_data["username"]})
 
             data["user_retrieve_url"] = user_retrieve_url
+            data["message"] = "Login successful"
 
             return Response(data, status=status.HTTP_200_OK)
         else:

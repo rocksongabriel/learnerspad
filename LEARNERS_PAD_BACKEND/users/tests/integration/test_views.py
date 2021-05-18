@@ -94,3 +94,62 @@ class TestStudentUserAPIViews:
 
             assert retrieve_response.status_code == 200
             assert content["username"] == generated_user.username
+
+
+class TestUserLoginView:
+
+    def test_developer_user_login(self, api_client):
+        generated_user = DeveloperUserFactory.build()
+        user_data = get_user_data(generated_user)
+
+        # create developer user
+        create_url = reverse("users:developer-user-create")
+        create_response = api_client.post(
+            create_url,
+            data=user_data,
+        )
+
+        # log user in if create is successful
+        if create_response.status_code == 200:
+            login_url = reverse("users:login")
+            login_response = api_client.post(
+                login_url,
+                data = {
+                    "username": user_data["username"],
+                    "password": user_data["password"],
+                }
+            )
+
+            assert login_response == 200
+            assert json.loads(login_response.content)["token"]
+            assert json.loads(login_response.content)["user_retrieve_url"]
+            assert json.loads(login_response.content)["message"] == "Login successful"
+            assert "developer" in json.loads(login_response.content)["user_retrieve_url"]
+
+    def test_student_user_login(self, api_client):
+        generated_user = StudentUserFactory.build()
+        user_data = get_user_data(generated_user)
+
+        # create developer user
+        create_url = reverse("users:student-user-create")
+        create_response = api_client.post(
+            create_url,
+            data=user_data,
+        )
+
+        # log user in if create is successful
+        if create_response.status_code == 200:
+            login_url = reverse("users:login")
+            login_response = api_client.post(
+                login_url,
+                data = {
+                    "username": user_data["username"],
+                    "password": user_data["password"],
+                }
+            )
+
+            assert login_response == 200
+            assert json.loads(login_response.content)["token"]
+            assert json.loads(login_response.content)["user_retrieve_url"]
+            assert json.loads(login_response.content)["message"] == "Login successful"
+            assert "student" in json.loads(login_response.content)["user_retrieve_url"]

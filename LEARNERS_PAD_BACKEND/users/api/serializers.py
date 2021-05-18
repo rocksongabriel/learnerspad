@@ -1,6 +1,19 @@
-from django.urls.base import reverse
 from rest_framework import serializers
 from ..models import DeveloperUser, DeveloperUserProfile, StudentUser, StudentUserProfile
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    """Custom token obtain pair serializer"""
+
+    @classmethod
+    def get_token(cls, user):
+        token =  super().get_token(user)
+
+        # add custom claims
+        token['uuid'] = str(user.uuid)
+
+        return token
 
 
 class DeveloperUserRegistrationSerializer(serializers.HyperlinkedModelSerializer):

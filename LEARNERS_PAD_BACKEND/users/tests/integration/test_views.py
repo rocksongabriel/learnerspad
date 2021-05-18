@@ -34,7 +34,7 @@ class TestDeveloperUserAPIViews:
         user_data = get_user_data(generated_user)
 
         create_url = reverse("users:developer-user-create")
-        retrieve_url = reverse("users:developer-user-detail", kwargs={"username": generated_user.username})
+        retrieve_url = reverse("users:developer-user-detail", kwargs={"uuid": generated_user.uuid})
 
         create_response = api_client.post(
             create_url,
@@ -78,7 +78,7 @@ class TestStudentUserAPIViews:
         user_data = get_user_data(generated_user)
 
         create_url = reverse("users:student-user-create")
-        retrieve_url = reverse("users:student-user-detail", kwargs={"username": generated_user.username})
+        retrieve_url = reverse("users:student-user-detail", kwargs={"uuid": generated_user.uuid})
 
         create_response = api_client.post(
             create_url,

@@ -1,6 +1,7 @@
 from factory import Sequence
 from factory.django import DjangoModelFactory
 from factory.faker import Faker
+import uuid
 
 from ..models import (DeveloperUser, DeveloperUserProfile, StudentUser,
                       StudentUserProfile)
@@ -16,10 +17,10 @@ class DeveloperUserFactory(DjangoModelFactory):
     first_name = Faker("first_name")
     last_name = Faker("last_name")
     password = "testpass1234"
-
+    uuid = uuid.uuid4()
 
 class StudentUserFactory(DjangoModelFactory):
-    
+
     class Meta:
         model = StudentUser
 
@@ -28,6 +29,7 @@ class StudentUserFactory(DjangoModelFactory):
     first_name = Faker("first_name")
     last_name = Faker("last_name")
     password = "testpass1234"
+    uuid = uuid.uuid4()
 
 
 class DeveloperUserProfileFactory(DjangoModelFactory):
@@ -42,5 +44,5 @@ class StudentUserProfileFactory(DjangoModelFactory):
 
     class Meta:
         model = StudentUserProfile
-    
+
     bio = Faker("paragraph")

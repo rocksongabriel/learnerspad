@@ -48,7 +48,7 @@ class TestDeveloperUserSerializers:
         """test for serialization of the developer user retrieve serializer"""
         user = DeveloperUserFactory.build()
 
-        url = reverse("users:developer-user-detail", kwargs={"username": user.username})
+        url = reverse("users:developer-user-detail", kwargs={"uuid": user.uuid})
 
         context = {
             "request": Request(APIRequestFactory().get(url))
@@ -121,7 +121,7 @@ class TestStudentUserSerializers:
         """test for the serialization of data of the student user retrieve serializer"""
         user = StudentUserFactory.build()
 
-        url = reverse("users:student-user-detail", kwargs={"username": user.username})
+        url = reverse("users:student-user-detail", kwargs={"uuid": user.uuid})
 
         context = {
             "request": Request(APIRequestFactory().get(url))

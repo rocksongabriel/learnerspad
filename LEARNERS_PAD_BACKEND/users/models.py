@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth.models import AbstractUser
+import uuid
 
 class User(AbstractUser):
     """Custom user model"""
@@ -10,6 +11,7 @@ class User(AbstractUser):
 
     base_type = Types.STUDENT
 
+    uuid = models.UUIDField(unique=True, default=uuid.uuid4, editable=False, null=False, blank=False)
     type = models.CharField(max_length=40, default=Types.STUDENT, choices=Types.choices)
     avatar = models.ImageField(upload_to="profile/avatar/", null=True, blank=True)
 

@@ -1,17 +1,29 @@
 import json
-
+from django.contrib.auth import get_user, get_user_model
+import jwt
 import requests
 from django.urls import reverse
+from requests.api import options
 from rest_framework import response, status
 from rest_framework.generics import RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+from users.api.serializers import CustomTokenObtainPairSerializer
 
 from .api.serializers import (DeveloperUserRegistrationSerializer,
                               DeveloperUserRetrieveSerializer,
                               StudentUserRegistrationSerializer,
                               StudentUserRetrieveSerializer)
+
+User = get_user_model()
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    """Custom token obtain pair view"""
+    serializer_class = CustomTokenObtainPairSerializer
 
 
 class BaseUserRegisterView(APIView):
@@ -37,7 +49,7 @@ class BaseUserLoginView(APIView):
 
     def post(self, request):
         req_data = request.data
-        url = "http://localhost:8000" + reverse("token_obtain_pair") # todo - modify how this is constructed so that it works in production
+        url = "http://localhost:8000" + reverse("users:token_obtain_pair") # todo - modify how this is constructed so that it works in production
         res = requests.post(
             url,
             data={
@@ -75,7 +87,6 @@ class DeveloperUserRetrieveView(RetrieveAPIView):
     lookup_url_kwarg = "username"
 
 
-
 class StudentUserRegisterView(BaseUserRegisterView):
     """APIView to create a student user instance"""
 
@@ -94,3 +105,36 @@ class StudentUserRetrieveView(RetrieveAPIView):
     serializer_class = StudentUserRetrieveSerializer
     lookup_field = "username"
     lookup_url_kwarg = "username"
+
+
+
+class UserLoginAPIView(APIView):
+    """ API view to log any type of user in """
+
+    def post(self, request):
+        request_data = request.data
+        data = {}
+
+        url = "http://localhost:8000" + reverse("users:token_obtain_pair") # todo - modify how this is constructed so that it works in production
+
+        res = requests.post(
+            url,
+            data = {
+                "username": request_data["username"],
+                "password": request_data["password"],
+            }
+        )
+
+        if res.status_code == 200:
+            data["token"] = json.loads(res.content)
+
+            decoded_token = jwt.decode(data["token"]["access"], options={"verify_signature": False})
+            user = User.objects.get(uuid=decoded_token["uuid"])
+            user_retrieve_url = reverse(f"users:{user.type.lower()}-user-detail", kwargs={"username":request_data["username"]})
+
+            data["user_retrieve_url"] = user_retrieve_url
+
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            data = json.loads(res.content)
+            return Response(data, status=status.HTTP_401_UNAUTHORIZED)

@@ -1,10 +1,29 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link :to="{ name: 'Home' }">Home</router-link> |
-      <router-link :to="{ name: 'Signup' }">Signup</router-link> |
-      <router-link :to="{ name: 'Login' }">Login</router-link> |
-      <router-link :to="{ name: 'Dashboard' }">Dashboard</router-link>
+      <router-link
+        :to="{ name: 'Home' }"
+        class="text-blue-700 text-lg font-sans underline"
+        >Home</router-link
+      >
+      |
+      <router-link
+        :to="{ name: 'Signup' }"
+        class="text-blue-700 text-lg font-sans underline"
+        >Signup</router-link
+      >
+      |
+      <router-link
+        :to="{ name: 'Login' }"
+        class="text-blue-700 text-lg font-sans underline"
+        >Login</router-link
+      >
+      |
+      <router-link
+        :to="{ name: 'Dashboard' }"
+        class="text-blue-700 text-lg font-sans underline"
+        >Dashboard</router-link
+      >
     </div>
 
     <router-view />

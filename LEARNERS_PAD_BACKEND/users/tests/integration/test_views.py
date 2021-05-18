@@ -1,4 +1,3 @@
-from django.http import response
 import factory
 from ..factories import DeveloperUserFactory, StudentUserFactory
 import pytest

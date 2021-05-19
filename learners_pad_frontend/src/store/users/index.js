@@ -34,7 +34,6 @@ const actions = {
   },
 
   async fetchUserData({ commit }, payload) {
-    console.log("Called");
     let url = payload["url"]
     await AUTH_HTTP_1.get(url, {
       headers: {
@@ -46,6 +45,27 @@ const actions = {
         commit("UPDATE_USER_DATA", res.data);
       }
     ).catch((error) => {
+      commit("UPDATE_ERROR_MESSAGES", error.response.data);
+    })
+  },
+
+  async signup({ commit, dispatch }, data) {
+    let user_type = data.get("user_type");
+    console.log(user_type);
+    let url = `api/users/account/${user_type}/create/`
+    await AUTH_HTTP_1.post(url, data).then((res) => {
+      // print data to console
+      console.log(res.data)
+      console.log(res);
+      if (res.status === 201) {
+          // log the user in
+          let form = new FormData();
+          form.set("username", data.get("username"));
+          form.set("password", data.get("password"));
+
+          dispatch("login", form);
+      }
+    }).catch((error) => {
       commit("UPDATE_ERROR_MESSAGES", error.response.data);
     })
   }

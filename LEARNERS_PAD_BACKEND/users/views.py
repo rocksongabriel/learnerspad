@@ -9,6 +9,7 @@ from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.permissions import IsAuthenticated
 
 from users.api.serializers import CustomTokenObtainPairSerializer
 
@@ -52,7 +53,7 @@ class DeveloperUserRegisterView(BaseUserRegisterView):
 
 class DeveloperUserRetrieveView(RetrieveAPIView):
     """APIView to retrieve a particular developer user instance"""
-
+    permission_classes = [IsAuthenticated]
     serializer_class = DeveloperUserRetrieveSerializer
     lookup_field = "uuid"
     lookup_url_kwarg = "uuid"
@@ -67,7 +68,7 @@ class StudentUserRegisterView(BaseUserRegisterView):
 
 class StudentUserRetrieveView(RetrieveAPIView):
     """APIView to retrieve a particular student user instance"""
-
+    permission_classes = [IsAuthenticated]
     serializer_class = StudentUserRetrieveSerializer
     lookup_field = "uuid"
     lookup_url_kwarg = "uuid"

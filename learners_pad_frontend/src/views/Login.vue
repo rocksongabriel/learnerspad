@@ -55,7 +55,13 @@ export default {
       loginFormData.set("username", this.loginForm.username);
       loginFormData.set("password", this.loginForm.password);
 
-      await this.$store.dispatch("login", loginFormData);
+      try {
+        await this.$store.dispatch("login", loginFormData);
+        this.loginForm.username = "";
+        this.loginForm.password = "";
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };

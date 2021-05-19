@@ -1,7 +1,10 @@
+/* eslint-disable */
+
 import { AUTH_HTTP } from "../../../http-common";
+import router from "../../router";
 
 const state = {
-  userData: {}, // hold the initial data from login
+  loginResponseData: {}, // hold the initial data from login
   errorMessages: {}, // hold error messages
 };
 
@@ -13,6 +16,9 @@ const actions = {
       .then((res) => {
         // commit data to state
         commit("UPDATE_USER_DATA", res.data);
+
+        // redirect user to dashboard
+        router.push({name: "Dashboard"})
       })
       .catch((error) => {
         commit("UPDATE_ERROR_MESSAGES", error.response.data);
@@ -23,15 +29,18 @@ const actions = {
 const mutations = {
   UPDATE_USER_DATA(state, payload) {
     state.errorMessages = {}; // set the errors to an empty object
-    state.userData = payload;
+    state.loginResponseData = payload;
   },
   UPDATE_ERROR_MESSAGES(state, payload) {
-    state.userData = {}; // set the initial user data to an empty object
+    state.loginResponseData = {}; // set the initial user data to an empty object
     state.errorMessages = payload;
   },
 };
 
-const getters = {};
+const getters = {
+  userToken: (state) => state.loginResponseData["token"],
+  isAuthenticated: (state) => !!state.loginResponseData["token"],
+};
 
 const usersModule = {
   state,

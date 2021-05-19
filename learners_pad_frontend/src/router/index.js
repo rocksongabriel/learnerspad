@@ -1,6 +1,10 @@
+/* eslint-disable */
+
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import store from "@/store/index";
+
 
 Vue.use(VueRouter);
 
@@ -45,7 +49,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);
 
-  if (requiresAuth) {
+  if (requiresAuth && !store.getters.isAuthenticated) {
     // if requires auth and current user data is not filled in the store
     next({ name: "Login" });
   } else {

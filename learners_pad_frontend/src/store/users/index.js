@@ -68,6 +68,12 @@ const actions = {
     }).catch((error) => {
       commit("UPDATE_ERROR_MESSAGES", error.response.data);
     })
+  },
+
+  logout({ commit }) {
+    commit("LOGOUT_USER");
+    // push the person to the login page
+    router.push({name: "Login"})
   }
 };
 
@@ -84,6 +90,11 @@ const mutations = {
   UPDATE_USER_DATA(state, payload) {
     state.errorMessages = {};
     state.userData = payload;
+  },
+  LOGOUT_USER(state) {
+    state.loginResponseData = {};
+    state.userData = {};
+    localStorage.removeItem("vuex"); // remove vuex from local storage
   }
 };
 
@@ -92,6 +103,7 @@ const getters = {
   userRefreshToken: (state) => state.loginResponseData["token"]["refresh"],
   isAuthenticated: (state) => !!state.loginResponseData["token"],
   userRetrieveUrl: (state) => state.loginResponseData["user_retrieve_url"],
+  user: (state) => state.userData,
 };
 
 const usersModule = {

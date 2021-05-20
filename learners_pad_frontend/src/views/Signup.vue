@@ -1,6 +1,6 @@
 <template>
   <div class="p-8">
-    <h1>Signup</h1>
+    <h1 class="font-bold text-5xl text-red-700">Signup</h1>
 
     <form @submit.prevent>
       <label for="username">Username</label> <br />

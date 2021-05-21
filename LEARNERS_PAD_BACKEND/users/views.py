@@ -1,5 +1,6 @@
 import json
 from collections import ChainMap
+from django.db.models import query
 
 import jwt
 import requests
@@ -32,7 +33,7 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 
 class BaseUserRegisterView(APIView):
-    serializer = ""
+    serializer = None
 
     def post(self, request):
         serializer = self.serializer(data=request.data)
@@ -48,30 +49,34 @@ class BaseUserRegisterView(APIView):
             return Response(data, status=status.HTTP_403_FORBIDDEN)
 
 
+class BaseUserRetrieveView(RetrieveAPIView):
+    """Base APIView to retrieve a particular user instance"""
+    profile_serializer = None
+    profile_model = None
+    lookup_field = "uuid"
+    lookup_url_kwarg = "uuid"
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object() #  get current instance
+        user_profile = self.profile_model.objects.get(user=instance) # get the profile associated with the user instance
+        profile_serializer = self.profile_serializer(user_profile) # serialize the profile data
+        serializer = self.get_serializer(instance)
+        data = dict(ChainMap(serializer.data, profile_serializer.data)) # Add the user data and profile data
+
+        return Response(data, status=status.HTTP_200_OK)
+
 class DeveloperUserRegisterView(BaseUserRegisterView):
     """APIView to create a developer user instance"""
 
     serializer = DeveloperUserRegistrationSerializer
 
 
-
-class DeveloperUserRetrieveView(RetrieveAPIView):
+class DeveloperUserRetrieveView(BaseUserRetrieveView):
     """APIView to retrieve a particular developer user instance"""
-    permission_classes = [IsAuthenticated]
-    serializer_class = DeveloperUserRetrieveSerializer
-    lookup_field = "uuid"
-    lookup_url_kwarg = "uuid"
+    profile_model = DeveloperUserProfile
+    profile_serializer = DeveloperUserProfileSerializer
     queryset = DeveloperUser.objects.all()
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object() #  get current instance
-        user_profile = DeveloperUserProfile.objects.get(user=instance) # create a developer user serializer
-        profile_serializer = DeveloperUserProfileSerializer(user_profile)
-        serializer = self.get_serializer(instance)
-        data = dict(ChainMap(serializer.data, profile_serializer.data))
-
-        return Response(data, status=status.HTTP_200_OK)
-
+    serializer_class = DeveloperUserRetrieveSerializer
 
 class StudentUserRegisterView(BaseUserRegisterView):
     """APIView to create a student user instance"""
@@ -79,23 +84,12 @@ class StudentUserRegisterView(BaseUserRegisterView):
     serializer = StudentUserRegistrationSerializer
 
 
-class StudentUserRetrieveView(RetrieveAPIView):
+class StudentUserRetrieveView(BaseUserRetrieveView):
     """APIView to retrieve a particular student user instance"""
-    permission_classes = [IsAuthenticated]
-    serializer_class = StudentUserRetrieveSerializer
-    lookup_field = "uuid"
-    lookup_url_kwarg = "uuid"
+    profile_model = StudentUserProfile
+    profile_serializer = StudentUserProfileSerializer
     queryset = StudentUser.objects.all()
-
-    def retrieve(self, request, *args, **kwargs):
-        instance = self.get_object() #  get current instance
-        user_profile = StudentUserProfile.objects.get(user=instance) # create a developer user serializer
-        profile_serializer = StudentUserProfileSerializer(user_profile) # serialize the 
-        serializer = self.get_serializer(instance)
-        data = dict(ChainMap(serializer.data, profile_serializer.data))
-
-        return Response(data, status=status.HTTP_200_OK)
-
+    serializer_class = StudentUserRetrieveSerializer
 
 
 class UserLoginAPIView(APIView):

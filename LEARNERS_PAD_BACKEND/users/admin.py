@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import DeveloperUser, StudentUser, User
+from .models import DeveloperUser, StudentUser, User, DeveloperUserProfile
 
 class UserModelAdmin(BaseUserAdmin):
     list_display = ["uuid", "username", "email", "first_name", "last_name", "type", "last_login"]
@@ -19,3 +19,8 @@ class DeveloperUserAdmin(UserModelAdmin):
 @admin.register(StudentUser)
 class StudentUserAdmin(UserModelAdmin):
     pass
+
+
+@admin.register(DeveloperUserProfile)
+class DeveloperUserProfileAdmin(admin.ModelAdmin):
+    list_display = ["user", "bio"]

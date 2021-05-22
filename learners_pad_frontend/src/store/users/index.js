@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { AUTH_HTTP_1 } from "../../../http-common";
+import jwtInterceptor from "../../../http-common";
 import router from "../../router";
 
 const state = {
@@ -13,7 +13,7 @@ const actions = {
   async login({ commit, dispatch }, form) {
     // log the user in
     let url = "api/users/account/login/";
-    await AUTH_HTTP_1.post(url, form)
+    await jwtInterceptor.post(url, form)
       .then((res) => {
         // commit data to state
         commit("UPDATE_USER_LOGIN_DATA_RESPONSE", res.data);
@@ -34,15 +34,15 @@ const actions = {
   },
 
   async fetchUserData({ commit }, payload) {
+    console.log("Never called")
     let url = payload["url"]
-    await AUTH_HTTP_1.get(url, {
-      headers: {
+    await jwtInterceptor.get(url, headers{
         "Authorization": `Bearer ${payload["access_token"]}`
-      }
     }).then(
       (res) => {
         // commit the user data to state
         commit("UPDATE_USER_DATA", res.data);
+        console.log("The request happened?")
       }
     ).catch((error) => {
       commit("UPDATE_ERROR_MESSAGES", error.response.data);
@@ -53,7 +53,7 @@ const actions = {
     let user_type = data.get("user_type");
     console.log(user_type);
     let url = `api/users/account/${user_type}/create/`
-    await AUTH_HTTP_1.post(url, data).then((res) => {
+    await jwtInterceptor.post(url, data).then((res) => {
       // print data to console
       console.log(res.data)
       console.log(res);

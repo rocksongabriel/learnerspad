@@ -32,7 +32,6 @@
         v-model.trim="signupForm.password"
       />
       <br />
-
       <button
         class="my-2 mx-1 py-2 px-4 bg-blue-500 focus:bg-red-600 font-bold"
         @click="setUserType('student')"

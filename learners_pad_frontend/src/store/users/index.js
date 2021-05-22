@@ -34,15 +34,14 @@ const actions = {
   },
 
   async fetchUserData({ commit }, payload) {
-    console.log("Never called")
     let url = payload["url"]
-    await jwtInterceptor.get(url, headers{
+    await jwtInterceptor.get(url, {
+      headers: {
         "Authorization": `Bearer ${payload["access_token"]}`
-    }).then(
+      }}).then(
       (res) => {
         // commit the user data to state
         commit("UPDATE_USER_DATA", res.data);
-        console.log("The request happened?")
       }
     ).catch((error) => {
       commit("UPDATE_ERROR_MESSAGES", error.response.data);

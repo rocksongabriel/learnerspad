@@ -2,6 +2,10 @@
   <div>
     <h1 class="font-bold text-black text-4xl">Dashboard</h1>
     <p>Welcome {{ user.username }}</p>
+    <p>Username: {{ user.username }}</p>
+    <p>Id: {{ user.id }}</p>
+    <p>Bio: {{ user.bio }}</p>
+    <p>Account type: {{ user.type }}</p>
     <button
       class="
         bg-red-800
@@ -37,9 +41,6 @@ export default {
   methods: {
     ...mapActions(["logout"])
   },
-  created() {
-    console.log(this.user);
-  }
 };
 </script>
 

@@ -1,20 +1,22 @@
 import axios from "axios";
-import store from "./src/store/index";
 
-// export const AUTH_HTTP_1 = axios.create({
-//   baseURL: "http://localhost:8000/",
-// });
+axios.defaults.baseURL = "http://localhost:8000/";
 
-let jwtInterceptor = axios.create({
-  baseURL: "http://localhost:8000/",
-});
+const jwtInterceptor = axios.create({});
 
-jwtInterceptor.interceptors.request.use((config) => {
-  console.log(config);
-  config.params = {name: "Gabriel"};
-  console.log(config);
-  console.log(store);
-  return config;
-});
+jwtInterceptor.interceptors.request.use(
+  (req) => {
+    return req;
+  },
+  (error) => {
+    return Response.reject(error);
+  }
+);
 
 export default jwtInterceptor;
+
+/*
+  ! - Interceptor not working
+  TODO - implement the token refresh logic
+  TODO - add the request token header to some requests in the interceptor
+*/

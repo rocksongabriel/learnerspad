@@ -51,6 +51,7 @@ class BaseUserRegisterView(APIView):
 
 class BaseUserRetrieveView(RetrieveAPIView):
     """Base APIView to retrieve a particular user instance"""
+    permission_classes = [IsAuthenticated]
     profile_serializer = None
     profile_model = None
     lookup_field = "uuid"

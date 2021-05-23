@@ -3,12 +3,14 @@
     <Navbar />
 
     <router-view />
+    <Footer />
   </div>
 </template>
 
 <script>
 /* eslint-disable */
 import Navbar from "./components/website/Navbar";
+import Footer from "./components/website/Footer";
 
 import { mapGetters } from "vuex";
 import router from "@/router/";
@@ -20,6 +22,7 @@ export default {
   },
   components: {
     Navbar,
+    Footer,
   },
   computed: {
     ...mapGetters([

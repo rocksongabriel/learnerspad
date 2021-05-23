@@ -1,30 +1,6 @@
 <template>
   <div id="app" class="">
-    <div id="nav">
-      <router-link
-        :to="{ name: 'Home' }"
-        class="text-blue-700 text-lg font-sans underline"
-        >Home</router-link
-      >
-      |
-      <router-link
-        :to="{ name: 'Signup' }"
-        class="text-blue-700 text-lg font-sans underline"
-        >Signup</router-link
-      >
-      |
-      <router-link
-        :to="{ name: 'Login' }"
-        class="text-blue-700 text-lg font-sans underline"
-        >Login</router-link
-      >
-      |
-      <router-link
-        :to="{ name: 'Dashboard' }"
-        class="text-blue-700 text-lg font-sans underline"
-        >Dashboard</router-link
-      >
-    </div>
+    <Navbar />
 
     <router-view />
   </div>
@@ -32,6 +8,7 @@
 
 <script>
 /* eslint-disable */
+import Navbar from "./components/website/Navbar";
 
 import { mapGetters } from "vuex";
 import router from "@/router/";
@@ -40,6 +17,9 @@ export default {
   name: "App",
   data() {
     return {};
+  },
+  components: {
+    Navbar,
   },
   computed: {
     ...mapGetters([

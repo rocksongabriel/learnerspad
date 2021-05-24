@@ -1,16 +1,13 @@
 <template>
-  <div id="app" class="">
-    <Navbar />
-
-    <router-view />
-    <Footer />
+  <div id="app" style="scroll-behavior: smooth">
+    <div>
+      <router-view />
+    </div>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
-import Navbar from "./components/website/Navbar";
-import Footer from "./components/website/Footer";
 
 import { mapGetters } from "vuex";
 import router from "@/router/";
@@ -20,10 +17,7 @@ export default {
   data() {
     return {};
   },
-  components: {
-    Navbar,
-    Footer,
-  },
+
   computed: {
     ...mapGetters([
       "isAuthenticated",
@@ -31,9 +25,13 @@ export default {
   },
   mounted() {
     // automatically send the user to the dashboard if they  are logged in
+    // this works when an authenticated user tries to access the login page or the signup page
+    // !-- this is not working, work on it
     if (this.isAuthenticated) {
-      if (this.$route.name !== "Dashboard") {
+      if (this.$route.name == "Login" || this.$route.name == "Signup") {
+        if (this.$route.name !== "Dashboard") {
         router.push({name: "Dashboard"});
+      }
       }
     }
   }

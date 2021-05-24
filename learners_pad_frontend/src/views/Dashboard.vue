@@ -1,32 +1,47 @@
 <template>
   <div>
-    <h1 class="font-bold text-black text-4xl">Dashboard</h1>
-    <p>Welcome {{ user.username }}</p>
-    <p>Username: {{ user.username }}</p>
-    <p>Id: {{ user.id }}</p>
-    <p>Bio: {{ user.bio }}</p>
-    <p>Account type: {{ user.type }}</p>
-    <button
-      class="
-        bg-red-800
-        text-2xl
-        font-bold font-serif
-        hover:bg-red-500
-        text-white
-        px-4
-        py-2
-        m-3
-      "
-      @click="logout()"
-    >
-      Log out
-    </button>
+    <!-- top navigation bar of the dashboard -->
+    <TopNavBar />
+
+
+    <div class="flex flex-row">
+      <!-- side navigation bar -->
+      <SideNavBar />
+
+      <!-- working area of the dashboard -->
+      <div class="p-4">
+        <h1 class="font-bold text-black text-4xl">Dashboard</h1>
+        <p>Welcome {{ user.username }}</p>
+        <p>Username: {{ user.username }}</p>
+        <p>Id: {{ user.id }}</p>
+        <p>Bio: {{ user.bio }}</p>
+        <p>Account type: {{ user.type }}</p>
+        <button
+          class="
+            bg-red-800
+            text-2xl
+            font-bold font-serif
+            hover:bg-red-500
+            text-white
+            px-4
+            py-2
+            m-3
+          "
+          @click="logout()"
+        >
+          Log out
+        </button>
+      </div>
+    </div>
+    
   </div>
 </template>
 
 <script>
 /* eslint-disable */
 import { mapActions, mapGetters } from "vuex";
+import TopNavBar from "../components/dashboard/TopNavBar";
+import SideNavBar from "../components/dashboard/SideNavBar";
 
 export default {
   name: "Dashboard",
@@ -34,6 +49,10 @@ export default {
     return {
 
     }
+  },
+  components: {
+    TopNavBar,
+    SideNavBar,
   },
   computed: {
     ...mapGetters(["user"]),

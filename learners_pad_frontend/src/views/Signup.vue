@@ -1,67 +1,76 @@
 <template>
-  <div class="p-8">
-    <h1 class="font-bold text-5xl text-red-700">Signup</h1>
-
-    <form @submit.prevent>
-      <label for="username">Username</label> <br />
-      <input
-        class="border border-black p-2"
-        type="text"
-        name="username"
-        id="username"
-        v-model.trim="signupForm.username"
-      />
-      <br />
-
-      <label for="email">Email</label> <br />
-      <input
-        class="border border-black p-2"
-        type="email"
-        name="email"
-        id="email"
-        v-model.trim="signupForm.email"
-      />
-      <br />
-
-      <label for="password">Password</label> <br />
-      <input
-        class="border border-black p-2"
-        type="password"
-        name="password"
-        id="password"
-        v-model.trim="signupForm.password"
-      />
-      <br />
-      <button
-        class="my-2 mx-1 py-2 px-4 bg-blue-500 focus:bg-red-600 font-bold"
-        @click="setUserType('student')"
+  <div class="my-10">
+    <form @submit.prevent class="flex justify-around">
+      <div
+        class="
+          p-5
+          bg-gray-200
+          border border-gray-300
+          shadow-2xl
+          w-4/5
+          md:w-2/5
+          lg:w-1/3
+        "
       >
-        Student
-      </button>
-      <button
-        class="my-2 mx-1 py-2 px-4 bg-blue-500 focus:bg-red-600 font-bold"
-        @click="setUserType('developer')"
-      >
-        Developer
-      </button>
-      <br /><br />
-      <div class="flex">
-        <button
-          class="
-            py-2
-            justify-center
-            px-4
-            bg-green-600
-            text-white
-            font-bold
-            hover:bg-black
-            focus:bg-green-800
-          "
-          type="submit"
-          @click="signup()"
-        >
-          Signup
-        </button>
+        <!-- The avatar -->
+        <div class="flex justify-around my-2">
+          <img
+            src="../assets/avatar7.png"
+            alt=""
+            class="rounded-full bg-gray-200"
+            style="height: 80px; width: 80px"
+          />
+        </div>
+
+        <!-- Welcome message -->
+        <h1 class="text-gray-600 text-2xl text-center">
+          We are glad to have you
+        </h1>
+
+        <div class="my-2">
+          <label for="username" class="form-label-1">Username</label> <br />
+          <input
+            class="form-input-1"
+            type="text"
+            name="username"
+            id="username"
+            v-model.trim="signupForm.username"
+          />
+        </div>
+
+        <div class="my-2">
+          <label for="email" class="form-label-1">Email</label> <br />
+          <input
+            class="form-input-1"
+            type="email"
+            name="email"
+            id="email"
+            v-model.trim="signupForm.email"
+          />
+        </div>
+
+        <div class="my-2">
+          <label for="password" class="form-label-1">Password</label> <br />
+          <input
+            class="form-input-1"
+            type="password"
+            name="password"
+            id="password"
+            v-model.trim="signupForm.password"
+          />
+        </div>
+
+        <div class="">
+          <button class="form-btn-2" type="submit" @click="signup()">
+            Signup
+          </button>
+
+          <div class="flex justify-around">
+            <router-link class="text-blue-800 text-xl" :to="{ name: 'Login' }"
+              >already having an account</router-link
+            >
+          </div>
+        </div>
       </div>
     </form>
   </div>

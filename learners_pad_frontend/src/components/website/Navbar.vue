@@ -1,7 +1,7 @@
 <template>
-  <nav class="bg-gray-100">
+  <nav class="bg-gray-600">
     <!-- container for nav -->
-    <div class="flex justify-between py-4 px-2 md:px-10 w-full">
+    <div class="flex justify-between py-2 px-2 md:px-10 w-full">
       <div class="flex items-center space-x-7">
         <!-- logo -->
         <div class="font-bold font-sans text-2xl text-gray-900">
@@ -56,16 +56,19 @@
       <router-link
         class="hover:text-gray-900 hover:bg-gray-300 p-2"
         :to="{ name: 'Home' }"
+        @click.native="toggleMenu()"
         >home</router-link
       >
       <router-link
         class="hover:text-gray-900 hover:bg-gray-300 p-2"
         :to="{ name: 'Features' }"
+        @click.native="toggleMenu()"
         >features</router-link
       >
       <router-link
         class="hover:text-gray-900 hover:bg-gray-300 p-2"
         :to="{ name: 'Login' }"
+        @click.native="toggleMenu()"
         >login</router-link
       >
     </div>

@@ -13,21 +13,24 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    children: [
+      {
+        path: "/login",
+        name: "Login",
+        component: () => {
+          return import(/* webpackChunkName: "login" */ "../views/Login.vue");
+        },
+      },
+      {
+        path: "/signup",
+        name: "Signup",
+        component: () => {
+          return import(/* webpackChunkName: "signup" */ "../views/Signup.vue");
+        },
+      },
+    ]
   },
-  {
-    path: "/login",
-    name: "Login",
-    component: () => {
-      return import(/* webpackChunkName: "login" */ "../views/Login.vue");
-    },
-  },
-  {
-    path: "/signup",
-    name: "Signup",
-    component: () => {
-      return import(/* webpackChunkName: "signup" */ "../views/Signup.vue");
-    },
-  },
+  
   {
     path: "/user/dashboard",
     name: "Dashboard",

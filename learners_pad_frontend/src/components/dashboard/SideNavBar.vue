@@ -1,30 +1,65 @@
 <template>
-  <nav class="bg-gray-700 w-48" style="height: calc(100vh - 60px)">
+  <nav
+    class="bg-gray-600 w-full md:w-56 overflow-y-visible"
+    style="height: 100vh"
+  >
     <!-- outer container -->
-    <div class="flex flex-col">
+    <div class="space-y-5">
       <!-- user avatar and name -->
-      <div class="h-36 bg-blue-400">
-        <span>user avatar here</span> <br />
-        <span>username here</span>
+      <div class="flex justify-around p-4 w-full bg-gray-500">
+        <div class="">
+          <img
+            class="rounded-full bg-white"
+            src="../../assets/avatar6.png"
+            alt=""
+            style="height: 100px; width: 100px"
+          />
+          <p class="py-2 text-lg font-sans text-gray-900">username here</p>
+        </div>
       </div>
 
       <!-- main navigation -->
-      <div class="flex flex-col my-10">
-        <router-link class="hover:bg-gray-800 hover:text-white py-3 pl-2" :to="{ name: 'Home' }">Menu Item </router-link>
-        <router-link class="hover:bg-gray-800 hover:text-white py-3 pl-2" :to="{ name: 'Home' }">Menu Item </router-link>
-        <router-link class="hover:bg-gray-800 hover:text-white py-3 pl-2" :to="{ name: 'Home' }">Menu Item </router-link>
-        <router-link class="hover:bg-gray-800 hover:text-white py-3 pl-2" :to="{ name: 'Home' }">Menu Item </router-link>
-        <router-link class="hover:bg-gray-800 hover:text-white py-3 pl-2" :to="{ name: 'Home' }">Menu Item </router-link>
-        <router-link class="hover:bg-gray-800 hover:text-white py-3 pl-2" :to="{ name: 'Home' }">Menu Item </router-link>
-        <router-link class="hover:bg-gray-800 hover:text-white py-3 pl-2" :to="{ name: 'Home' }">Menu Item </router-link>
-        <router-link class="hover:bg-gray-800 hover:text-white py-3 pl-2" :to="{ name: 'Home' }">Menu Item </router-link>
-      </div>
-
-      <!-- logout button -->
-      <div class="">
-        <button class="px-4 py-2 bg-red-600 w-full text-xl font-thin">
-          Logout
-        </button>
+      <div class="flex flex-col text-center">
+        <router-link
+          class="px-4 py-2 hover:bg-gray-800 font-bold hover:text-white text-xl"
+          :to="{ name: 'Home' }"
+          >Menu Item
+        </router-link>
+        <router-link
+          class="px-4 py-2 hover:bg-gray-800 font-bold hover:text-white text-xl"
+          :to="{ name: 'Home' }"
+          >Menu Item
+        </router-link>
+        <router-link
+          class="px-4 py-2 hover:bg-gray-800 font-bold hover:text-white text-xl"
+          :to="{ name: 'Home' }"
+          >Menu Item
+        </router-link>
+        <router-link
+          class="px-4 py-2 hover:bg-gray-800 font-bold hover:text-white text-xl"
+          :to="{ name: 'Home' }"
+          >Menu Item
+        </router-link>
+        <router-link
+          class="px-4 py-2 hover:bg-gray-800 font-bold hover:text-white text-xl"
+          :to="{ name: 'Home' }"
+          >Menu Item
+        </router-link>
+        <router-link
+          class="px-4 py-2 hover:bg-gray-800 font-bold hover:text-white text-xl"
+          :to="{ name: 'Home' }"
+          >Menu Item
+        </router-link>
+        <router-link
+          class="px-4 py-2 hover:bg-gray-800 font-bold hover:text-white text-xl"
+          :to="{ name: 'Home' }"
+          >Menu Item
+        </router-link>
+        <router-link
+          class="px-4 py-2 hover:bg-gray-800 font-bold hover:text-white text-xl"
+          :to="{ name: 'Home' }"
+          >Menu Item
+        </router-link>
       </div>
     </div>
   </nav>

@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <!-- top navigation bar of the dashboard -->
-    <TopNavBar />
+  <div class="flex">
+    <!-- side navigation bar -->
+    <!-- TODO - make the navbars mobile responsive -->
+    <SideNavBar/>
 
-
-    <div class="flex flex-row">
-      <!-- side navigation bar -->
-      <SideNavBar />
+    <div class="w-full">
+      <!-- top navigation bar of the dashboard -->
+      <TopNavBar />
 
       <!-- working area of the dashboard -->
       <div class="p-4">
@@ -33,7 +33,6 @@
         </button>
       </div>
     </div>
-    
   </div>
 </template>
 

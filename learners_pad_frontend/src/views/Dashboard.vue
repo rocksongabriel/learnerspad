@@ -2,7 +2,7 @@
   <div class="flex">
     <!-- side navigation bar -->
     <!-- TODO - make the navbars mobile responsive -->
-    <SideNavBar/>
+    <SideNavBar />
 
     <div class="w-full">
       <!-- top navigation bar of the dashboard -->

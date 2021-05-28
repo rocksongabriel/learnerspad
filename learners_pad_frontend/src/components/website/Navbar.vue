@@ -28,14 +28,15 @@
         >
         <router-link
           class="
-            bg-blue-800
-            hover:bg-blue-700
+            bg-green-500
+            hover:bg-green-600
             py-2
             px-2
             rounded
             shadow-md
-            text-white
-            hover:text-gray-200
+            text-gray-900
+            hover:text-gray-800
+            font-bold
           "
           :to="{ name: 'Signup' }"
           >signup</router-link

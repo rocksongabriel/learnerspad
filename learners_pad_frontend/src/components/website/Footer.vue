@@ -19,10 +19,10 @@
           border-b-4 border-purple-300
         "
       >
-        <a href=""><font-awesome-icon :icon="['fab', 'github']" /></a>
-        <a href=""><font-awesome-icon :icon="['fab', 'linkedin']" /></a>
-        <a href=""> <font-awesome-icon :icon="['fab', 'twitter']" /></a>
-        <a href=""><font-awesome-icon :icon="['fab', 'dev']" /></a>
+        <a href="#"><font-awesome-icon :icon="['fab', 'github']" /></a>
+        <a href="#"><font-awesome-icon :icon="['fab', 'linkedin']" /></a>
+        <a href="#"> <font-awesome-icon :icon="['fab', 'twitter']" /></a>
+        <a href="#"><font-awesome-icon :icon="['fab', 'dev']" /></a>
       </div>
 
       <!-- Personal Projects -->

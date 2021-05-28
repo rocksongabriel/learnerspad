@@ -1,7 +1,7 @@
 <template>
-  <div class="my-10">
+  <div class="mt-12 md:mt-24">
     <form @submit.prevent class="flex justify-around">
-      <div class="p-8 md:px-12 md:px-6 bg-white shadow-2xl">
+      <div class="p-8 md:px-12 md:py-8 bg-white shadow-2xl">
         <!-- The avatar -->
         <div class="flex justify-around my-2">
           <img

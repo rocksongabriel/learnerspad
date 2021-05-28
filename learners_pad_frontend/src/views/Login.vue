@@ -44,15 +44,11 @@
         <div class="my-2">
           <button class="form-btn-1" @click="login()">Login</button>
           <div class="flex justify-around">
-            <router-link
-              :to="{ name: 'Signup' }"
-              class="text-blue-700 text-lg font-sans underline"
+            <router-link :to="{ name: 'Signup' }" class="text-blue-800 text-xl"
               >Create account</router-link
             >
             |
-            <a href="#" class="text-blue-700 text-lg font-sans underline"
-              >Forgot Password</a
-            >
+            <a href="#" class="text-blue-800 text-xl">Forgot Password</a>
           </div>
         </div>
       </div>

@@ -21,42 +21,106 @@
       <!-- main navigation -->
       <div class="flex flex-col text-center">
         <router-link
-          class="px-4 py-2 hover:bg-gray-800 text-gray-900 font-bold hover:text-white text-xl"
+          class="
+            px-4
+            py-2
+            hover:bg-gray-800
+            text-gray-900
+            font-bold
+            hover:text-white
+            text-xl
+          "
           :to="{ name: 'Home' }"
           >Menu Item
         </router-link>
         <router-link
-          class="px-4 py-2 hover:bg-gray-800 text-gray-900 font-bold hover:text-white text-xl"
+          class="
+            px-4
+            py-2
+            hover:bg-gray-800
+            text-gray-900
+            font-bold
+            hover:text-white
+            text-xl
+          "
           :to="{ name: 'Home' }"
           >Menu Item
         </router-link>
         <router-link
-          class="px-4 py-2 hover:bg-gray-800 text-gray-900 font-bold hover:text-white text-xl"
+          class="
+            px-4
+            py-2
+            hover:bg-gray-800
+            text-gray-900
+            font-bold
+            hover:text-white
+            text-xl
+          "
           :to="{ name: 'Home' }"
           >Menu Item
         </router-link>
         <router-link
-          class="px-4 py-2 hover:bg-gray-800 text-gray-900 font-bold hover:text-white text-xl"
+          class="
+            px-4
+            py-2
+            hover:bg-gray-800
+            text-gray-900
+            font-bold
+            hover:text-white
+            text-xl
+          "
           :to="{ name: 'Home' }"
           >Menu Item
         </router-link>
         <router-link
-          class="px-4 py-2 hover:bg-gray-800 text-gray-900 font-bold hover:text-white text-xl"
+          class="
+            px-4
+            py-2
+            hover:bg-gray-800
+            text-gray-900
+            font-bold
+            hover:text-white
+            text-xl
+          "
           :to="{ name: 'Home' }"
           >Menu Item
         </router-link>
         <router-link
-          class="px-4 py-2 hover:bg-gray-800 text-gray-900 font-bold hover:text-white text-xl"
+          class="
+            px-4
+            py-2
+            hover:bg-gray-800
+            text-gray-900
+            font-bold
+            hover:text-white
+            text-xl
+          "
           :to="{ name: 'Home' }"
           >Menu Item
         </router-link>
         <router-link
-          class="px-4 py-2 hover:bg-gray-800 text-gray-900 font-bold hover:text-white text-xl"
+          class="
+            px-4
+            py-2
+            hover:bg-gray-800
+            text-gray-900
+            font-bold
+            hover:text-white
+            text-xl
+          "
           :to="{ name: 'Home' }"
           >Menu Item
         </router-link>
         <router-link
-          class="px-4 py-2 hover:bg-gray-800 text-gray-900 font-bold hover:text-white text-xl"
+          class="
+            px-4
+            py-2
+            hover:bg-gray-800
+            text-gray-900
+            font-bold
+            hover:text-white
+            text-xl
+          "
           :to="{ name: 'Home' }"
           >Menu Item
         </router-link>

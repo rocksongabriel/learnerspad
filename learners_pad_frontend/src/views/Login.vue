@@ -25,8 +25,19 @@
             name="usrname"
             id="username1"
             class="form-input-1"
+            :class="{
+              'border-2 border-red-400':
+                submitted && $v.loginForm.username.$invalid,
+            }"
+            @blur="$v.loginForm.username.$touch()"
             v-model.trim="loginForm.username"
           />
+          <p
+            class="text-sm text-red-600 my-1"
+            v-if="submitted && $v.loginForm.username.$invalid"
+          >
+            Username is required
+          </p>
         </div>
 
         <!-- password -->
@@ -37,8 +48,18 @@
             name="password"
             id="password1"
             class="form-input-1"
+            :class="{
+              'border-2 border-red-400':
+                submitted && $v.loginForm.password.$invalid,
+            }"
             v-model.trim="loginForm.password"
           />
+          <p
+            class="text-red-600 text-sm my-1"
+            v-if="submitted && $v.loginForm.password.$invalid"
+          >
+            Password is required
+          </p>
         </div>
 
         <div class="my-2">
@@ -57,6 +78,8 @@
 </template>
 
 <script>
+import { required } from "vuelidate/lib/validators";
+
 export default {
   name: "Login",
   data() {
@@ -65,10 +88,14 @@ export default {
         username: "",
         password: "",
       },
+      submitted: false,
     };
   },
   methods: {
     async login() {
+      // set submitted to true
+      this.submitted = true;
+
       let loginFormData = new FormData();
       loginFormData.set("username", this.loginForm.username);
       loginFormData.set("password", this.loginForm.password);
@@ -80,6 +107,12 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+  },
+  validations: {
+    loginForm: {
+      username: { required },
+      password: { required },
     },
   },
 };

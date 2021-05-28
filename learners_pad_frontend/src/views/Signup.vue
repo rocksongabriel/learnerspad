@@ -1,33 +1,24 @@
 <template>
   <div class="my-10">
     <form @submit.prevent class="flex justify-around">
-      <div
-        class="
-          p-5
-          bg-gray-200
-          border border-gray-300
-          shadow-2xl
-          w-4/5
-          md:w-2/5
-          lg:w-1/3
-        "
-      >
+      <div class="p-8 md:px-12 md:px-6 bg-white shadow-2xl">
         <!-- The avatar -->
         <div class="flex justify-around my-2">
           <img
             src="../assets/avatar7.png"
             alt=""
-            class="rounded-full bg-gray-200"
-            style="height: 80px; width: 80px"
+            class="rounded-full bg-gray-200 p-2 shadow-xl"
+            style="height: 60px; width: 60px"
           />
         </div>
 
         <!-- Welcome message -->
-        <h1 class="text-gray-600 text-2xl text-center">
+        <h1 class="text-gray-700 text-xl font-bold text-center">
           We are glad to have you
         </h1>
 
-        <div class="my-2">
+        <!-- username -->
+        <div class="my-3">
           <label for="username" class="form-label-1">Username</label> <br />
           <input
             class="form-input-1"
@@ -38,7 +29,8 @@
           />
         </div>
 
-        <div class="my-2">
+        <!-- email -->
+        <div class="my-3">
           <label for="email" class="form-label-1">Email</label> <br />
           <input
             class="form-input-1"
@@ -49,7 +41,8 @@
           />
         </div>
 
-        <div class="my-2">
+        <!-- password -->
+        <div class="my-3">
           <label for="password" class="form-label-1">Password</label> <br />
           <input
             class="form-input-1"

@@ -1,31 +1,25 @@
 <template>
-  <div class="my-10">
+  <div class="mt-12 md:mt-32">
     <form @submit.prevent class="flex justify-around">
-      <div
-        class="
-          p-5
-          bg-gray-200
-          border border-gray-300
-          drop-shadow-2xl
-          w-4/5
-          md:w-2/5
-          lg:w-1/3
-        "
-      >
+      <div class="p-8 bg-white shadow-2xl">
+        <!-- The avatar container -->
         <div class="flex justify-around my-2">
           <img
             src="../assets/avatar6.png"
             alt=""
-            class="rounded-full"
-            style="height: 80px; width: 80px"
+            class="rounded-full bg-gray-200 p-2 shadow-xl"
+            style="height: 60px; width: 60px"
           />
         </div>
 
-        <h1 class="text-center text-2xl text-gray-600">Welcome Back</h1>
+        <!-- welcome message -->
+        <h1 class="text-center text-2xl text-gray-700 font-bold">
+          Welcome Back
+        </h1>
 
-        <div class="my-2">
+        <!-- username -->
+        <div class="my-4">
           <label for="username1" class="form-label-1">Username</label>
-          <br />
           <input
             type="text"
             name="usrname"
@@ -35,16 +29,14 @@
           />
         </div>
 
+        <!-- password -->
         <div class="my-2">
-          <label for="password1" class="text-2xl font-bold text-gray-800"
-            >Password</label
-          >
-          <br />
+          <label for="password1" class="form-label-1">Password</label>
           <input
             type="password"
             name="password"
             id="password1"
-            class="p-3 text-lg w-full border border-gray-900 focus:outline-none"
+            class="form-input-1"
             v-model.trim="loginForm.password"
           />
         </div>

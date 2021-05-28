@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import Vuelidate from "vuelidate";
 import "./assets/tailwind.css";
 import axios from "axios";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -16,6 +17,9 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 library.add(faGithub, faLinkedin, faTwitter, faDev);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
+
+// register vuelidate
+Vue.use(Vuelidate);
 
 // Make Axios play nice with Django CSRF
 axios.defaults.xsrfCookieName = "csrftoken";

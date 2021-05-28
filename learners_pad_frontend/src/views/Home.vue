@@ -5,6 +5,7 @@
 
     <!-- Content of the homepage -->
     <div class="mx-4 md:mx-8 lg:mx-16" v-show="$route.path == '/'">
+      <font-awesome-icon icon="github" />
       <h1
         class="
           text-6xl

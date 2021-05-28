@@ -42,11 +42,11 @@
         >
         <!-- mobile nav button -->
         <div class="space-y-1.5 cursor-pointer md:hidden" @click="toggleMenu()">
-          <div class="h-1 w-7 bg-white"></div>
+          <div class="h-0.5 w-7 bg-white"></div>
           <div class="flex justify-end">
-            <div class="h-1 w-4 bg-white"></div>
+            <div class="h-0.5 w-4 bg-white"></div>
           </div>
-          <div class="h-1 w-7 bg-white"></div>
+          <div class="h-0.5 w-7 bg-white"></div>
         </div>
       </div>
     </div>

@@ -8,9 +8,7 @@
       <!-- primary nav -->
       <!-- TODO - add avatar to the profile button -->
       <div>
-        <button class="text-blue-900 font-bold">
-          profile
-        </button>
+        <button class="text-blue-900 font-bold">profile</button>
       </div>
     </div>
   </nav>

@@ -92,7 +92,7 @@
         <!-- account type -->
         <div class="my-3">
           <label for="account_type" class="form-label-1">Account type</label>
-          <div class="flex justify-between mt-2">
+          <div class="flex justify-around mt-2">
             <button
               class="
                 px-6

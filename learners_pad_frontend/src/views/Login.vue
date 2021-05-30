@@ -1,7 +1,7 @@
 <template>
   <div class="mt-12 md:mt-32">
     <form @submit.prevent class="flex justify-around">
-      <div class="p-8 bg-white shadow-2xl">
+      <div class="p-8 bg-white shadow-2xl w-4/5 md:w-3/5 lg:w-2/5">
         <!-- The avatar container -->
         <div class="flex justify-around my-2">
           <img
@@ -17,6 +17,14 @@
           Welcome Back
         </h1>
 
+        <!-- rendering general errors -->
+        <div class="my-3">
+          <div v-for="error in userErrorMessages" :key="error">
+            <p class="text-sm text-red-600 font-bold">{{ error }}</p>
+            <p class="text-sm text-red-500">Check your username and password</p>
+          </div>
+        </div>
+
         <!-- username -->
         <div class="my-4">
           <label for="username1" class="form-label-1">Username</label>
@@ -26,7 +34,7 @@
             id="username1"
             class="form-input-1"
             :class="{
-              'border-2 border-red-400':
+              'border-2 border-red-600':
                 submitted && $v.loginForm.username.$invalid,
             }"
             @blur="$v.loginForm.username.$touch()"
@@ -49,7 +57,7 @@
             id="password1"
             class="form-input-1"
             :class="{
-              'border-2 border-red-400':
+              'border-2 border-red-600':
                 submitted && $v.loginForm.password.$invalid,
             }"
             v-model.trim="loginForm.password"
@@ -65,11 +73,13 @@
         <div class="my-2">
           <button class="form-btn-1" @click="login()">Login</button>
           <div class="flex justify-around">
-            <router-link :to="{ name: 'Signup' }" class="text-blue-800 text-xl"
+            <router-link
+              :to="{ name: 'Signup' }"
+              class="text-blue-800 text-xl mr-2"
               >Create account</router-link
             >
             |
-            <a href="#" class="text-blue-800 text-xl">Forgot Password</a>
+            <a href="#" class="text-blue-800 text-xl ml-2">Forgot Password</a>
           </div>
         </div>
       </div>
@@ -79,6 +89,7 @@
 
 <script>
 import { required } from "vuelidate/lib/validators";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Login",
@@ -91,21 +102,25 @@ export default {
       submitted: false,
     };
   },
+  computed: {
+    ...mapGetters(["userErrorMessages"]),
+  },
   methods: {
     async login() {
       // set submitted to true
       this.submitted = true;
+      this.$v.$touch();
 
       let loginFormData = new FormData();
       loginFormData.set("username", this.loginForm.username);
       loginFormData.set("password", this.loginForm.password);
 
-      try {
-        await this.$store.dispatch("login", loginFormData);
-        this.loginForm.username = "";
-        this.loginForm.password = "";
-      } catch (error) {
-        console.log(error);
+      if (!this.$v.$error) {
+        try {
+          await this.$store.dispatch("login", loginFormData);
+        } catch (error) {
+          console.log(error);
+        }
       }
     },
   },

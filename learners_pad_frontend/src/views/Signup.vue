@@ -41,6 +41,48 @@
           />
         </div>
 
+        <!-- account type -->
+        <div class="my-3">
+          <label for="account_type" class="form-label-1">Account type</label>
+          <div class="flex justify-between mt-2">
+            <button
+              class="
+                px-6
+                py-2
+                text-lg
+                border-2 border-purple-600
+                text-gray-900
+                font-bold
+                rounded-md
+                hover:bg-purple-600
+                bg-purple-600
+                hover:text-white
+              "
+              id="student_type_btn"
+              @click="setStudentUserType()"
+            >
+              Student
+            </button>
+            <button
+              class="
+                px-6
+                py-2
+                text-lg
+                border-2 border-blue-600
+                font-bold
+                text-gray-900
+                rounded-md
+                hover:bg-blue-600
+                hover:text-white
+              "
+              id="developer_type_btn"
+              @click="setDeveloperUserType()"
+            >
+              Developer
+            </button>
+          </div>
+        </div>
+
         <!-- password -->
         <div class="my-3">
           <label for="password" class="form-label-1">Password</label> <br />
@@ -103,6 +145,30 @@ export default {
     setUserType(type) {
       this.signupForm.user_type = type;
       console.log(this.signupForm.user_type);
+    },
+    setDeveloperUserType() {
+      this.signupForm.user_type = "developer"; // set user type
+
+      // alter background colors of buttons
+      // set background color on developer type button
+      const developer_btn = document.getElementById("developer_type_btn");
+      developer_btn.classList.toggle("bg-blue-600");
+
+      // remove background color on student type button
+      const student_btn = document.getElementById("student_type_btn");
+      student_btn.classList.toggle("bg-purple-600");
+    },
+    setStudentUserType() {
+      this.signupForm.user_type = "student";
+
+      // alter background colors of buttons
+      // set background color on developer type button
+      const developer_btn = document.getElementById("developer_type_btn");
+      developer_btn.classList.toggle("bg-blue-600");
+
+      // remove background color on student type button
+      const student_btn = document.getElementById("student_type_btn");
+      student_btn.classList.toggle("bg-purple-600");
     },
   },
 };

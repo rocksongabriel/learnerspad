@@ -112,6 +112,8 @@
 </template>
 
 <script>
+import { required, email, minLength } from "vuelidate/lib/validators";
+
 export default {
   name: "Signup",
   data() {
@@ -122,7 +124,19 @@ export default {
         password: "",
         user_type: "",
       },
+      submitted: false,
     };
+  },
+  validations: {
+    signupForm: {
+      username: { required },
+      email: { required, email },
+      password: {
+        required,
+        minLength: minLength(6),
+      },
+      user_type: { required },
+    },
   },
   methods: {
     async signup() {
@@ -142,33 +156,30 @@ export default {
         console.log(error);
       }
     },
-    setUserType(type) {
-      this.signupForm.user_type = type;
-      console.log(this.signupForm.user_type);
-    },
     setDeveloperUserType() {
       this.signupForm.user_type = "developer"; // set user type
 
       // alter background colors of buttons
       // set background color on developer type button
       const developer_btn = document.getElementById("developer_type_btn");
-      developer_btn.classList.toggle("bg-blue-600");
+      console.log(developer_btn.classList);
+      developer_btn.classList.add("bg-blue-600");
 
       // remove background color on student type button
       const student_btn = document.getElementById("student_type_btn");
-      student_btn.classList.toggle("bg-purple-600");
+      student_btn.classList.remove("bg-purple-600");
     },
     setStudentUserType() {
       this.signupForm.user_type = "student";
 
       // alter background colors of buttons
-      // set background color on developer type button
-      const developer_btn = document.getElementById("developer_type_btn");
-      developer_btn.classList.toggle("bg-blue-600");
-
-      // remove background color on student type button
+      // set background color on student type button
       const student_btn = document.getElementById("student_type_btn");
-      student_btn.classList.toggle("bg-purple-600");
+      student_btn.classList.add("bg-purple-600");
+
+      // remove background color on developer type button
+      const developer_btn = document.getElementById("developer_type_btn");
+      developer_btn.classList.remove("bg-blue-600");
     },
   },
 };

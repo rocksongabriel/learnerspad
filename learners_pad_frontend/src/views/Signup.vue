@@ -22,11 +22,36 @@
           <label for="username" class="form-label-1">Username</label> <br />
           <input
             class="form-input-1"
+            :class="{
+              'border-2 border-red-600':
+                submitted && !$v.signupForm.username.required,
+            }"
             type="text"
             name="username"
             id="username"
             v-model.trim="signupForm.username"
           />
+
+          <!-- rendering errors -->
+          <!-- frontend errors -->
+          <p
+            class="text-red-600 text-sm my-1"
+            v-if="submitted && !$v.signupForm.username.required"
+          >
+            Username is required
+          </p>
+          <!-- server errors -->
+          <div
+            v-if="userErrorMessages['username']"
+            class="flex flex-wrap w-full"
+          >
+            <div
+              v-for="username_error in userErrorMessages['username']"
+              :key="username_error"
+            >
+              <p class="text-sm text-red-600 my-1">{{ username_error }}</p>
+            </div>
+          </div>
         </div>
 
         <!-- email -->
@@ -38,7 +63,28 @@
             name="email"
             id="email"
             v-model.trim="signupForm.email"
+            :class="{
+              'border-2 border-red-600':
+                submitted && !$v.signupForm.email.required,
+            }"
           />
+          <!-- rendering errors -->
+          <!-- frontend errors -->
+          <p
+            class="text-red-600 text-sm"
+            v-if="submitted && !$v.signupForm.email.required"
+          >
+            Email is required
+          </p>
+          <!-- server errors -->
+          <div v-if="userErrorMessages['email']" class="flex flex-wrap w-full">
+            <div
+              v-for="email_error in userErrorMessages['email']"
+              :key="email_error"
+            >
+              <p class="text-sm text-red-600 my-1">{{ email_error }}</p>
+            </div>
+          </div>
         </div>
 
         <!-- account type -->
@@ -81,6 +127,12 @@
               Developer
             </button>
           </div>
+          <p
+            class="text-red-600 text-sm"
+            v-if="submitted && !$v.signupForm.user_type.required"
+          >
+            Account type is required
+          </p>
         </div>
 
         <!-- password -->
@@ -92,7 +144,39 @@
             name="password"
             id="password"
             v-model.trim="signupForm.password"
+            :class="{
+              'border-2 border-red-600':
+                (submitted && !$v.signupForm.password.required) ||
+                (submitted && !$v.signupForm.password.minLength),
+            }"
           />
+          <!-- rendering errors -->
+          <!-- frontend errors -->
+          <p
+            class="text-red-600 text-sm"
+            v-if="submitted && !$v.signupForm.password.required"
+          >
+            Password is required
+          </p>
+          <p
+            class="text-red-600 text-sm"
+            v-if="submitted && !$v.signupForm.password.minLength"
+          >
+            Minimum length of password is
+            {{ $v.signupForm.password.$params.minLength.min }}
+          </p>
+          <!-- server errors -->
+          <div
+            v-if="userErrorMessages['password']"
+            class="flex flex-wrap w-full"
+          >
+            <div
+              v-for="password_error in userErrorMessages['password']"
+              :key="password_error"
+            >
+              <p class="text-sm text-red-600 my-1">{{ password_error }}</p>
+            </div>
+          </div>
         </div>
 
         <div class="">
@@ -102,7 +186,7 @@
 
           <div class="flex justify-around">
             <router-link class="text-blue-800 text-xl" :to="{ name: 'Login' }"
-              >already having an account</router-link
+              >already having an account?</router-link
             >
           </div>
         </div>
@@ -113,6 +197,7 @@
 
 <script>
 import { required, email, minLength } from "vuelidate/lib/validators";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Signup",
@@ -126,6 +211,9 @@ export default {
       },
       submitted: false,
     };
+  },
+  computed: {
+    ...mapGetters(["userErrorMessages"]),
   },
   validations: {
     signupForm: {
@@ -146,14 +234,15 @@ export default {
       signupFormData.set("password", this.signupForm.password);
       signupFormData.set("user_type", this.signupForm.user_type);
 
-      try {
-        await this.$store.dispatch("signup", signupFormData);
-        this.signupForm.username = "";
-        this.signupForm.email = "";
-        this.signupForm.password = "";
-        this.signupForm.user_type = "";
-      } catch (error) {
-        console.log(error);
+      this.submitted = true;
+      this.$v.$touch();
+
+      if (!this.$v.$error) {
+        try {
+          await this.$store.dispatch("signup", signupFormData);
+        } catch (error) {
+          console.log(error);
+        }
       }
     },
     setDeveloperUserType() {
@@ -162,7 +251,6 @@ export default {
       // alter background colors of buttons
       // set background color on developer type button
       const developer_btn = document.getElementById("developer_type_btn");
-      console.log(developer_btn.classList);
       developer_btn.classList.add("bg-blue-600");
 
       // remove background color on student type button
@@ -181,6 +269,9 @@ export default {
       const developer_btn = document.getElementById("developer_type_btn");
       developer_btn.classList.remove("bg-blue-600");
     },
+  },
+  mounted() {
+    this.signupForm.user_type = "student";
   },
 };
 </script>

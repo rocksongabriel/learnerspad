@@ -9,7 +9,7 @@
 <script>
 /* eslint-disable */
 
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import router from "@/router/";
 
 export default {
@@ -17,11 +17,13 @@ export default {
   data() {
     return {};
   },
-
   computed: {
     ...mapGetters([
       "isAuthenticated",
     ])
+  },
+  methods: {
+    ...mapActions(["remove_user_error_messages"]),
   },
   mounted() {
     // automatically send the user to the dashboard if they  are logged in
@@ -34,6 +36,10 @@ export default {
       }
       }
     }
+  },
+  created() {
+    // remove the error messages
+    this.remove_user_error_messages();
   }
 };
 </script>

@@ -73,6 +73,10 @@ const actions = {
     commit("LOGOUT_USER");
     // push the person to the login page
     router.push({name: "Login"})
+  },
+
+  remove_user_error_messages({ commit }) {
+    commit("REMOVE_ERROR_MESSAGES");
   }
 };
 
@@ -94,6 +98,9 @@ const mutations = {
     state.loginResponseData = {};
     state.userData = {};
     localStorage.removeItem("vuex"); // remove vuex from local storage
+  },
+  REMOVE_ERROR_MESSAGES(state) {
+    state.errorMessages = {};
   }
 };
 
@@ -103,6 +110,7 @@ const getters = {
   isAuthenticated: (state) => !!state.loginResponseData["token"],
   userRetrieveUrl: (state) => state.loginResponseData["user_retrieve_url"],
   user: (state) => state.userData,
+  userErrorMessages: (state) => state.errorMessages,
 };
 
 const usersModule = {

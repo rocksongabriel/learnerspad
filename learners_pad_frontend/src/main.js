@@ -12,9 +12,18 @@ import {
   faTwitter,
   faDev,
 } from "@fortawesome/free-brands-svg-icons";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
+import {
+  faStickyNote,
+  faCalendarCheck,
+  faUser,
+  faClock,
+  faListAlt,
+} from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(faGithub, faLinkedin, faTwitter, faDev);
+library.add(faBell, faStickyNote, faCalendarCheck, faUser, faClock, faListAlt);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

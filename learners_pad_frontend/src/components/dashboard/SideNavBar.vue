@@ -1,132 +1,50 @@
 <template>
-  <nav
-    class="bg-gray-500 w-full md:w-56 overflow-y-visible"
-    style="height: 100vh"
-  >
-    <!-- outer container -->
-    <div class="space-y-5">
-      <!-- user avatar and name -->
-      <div class="flex justify-around p-4 w-full bg-gray-400">
-        <div class="">
-          <img
-            class="rounded-full bg-white"
-            src="../../assets/avatar6.png"
-            alt=""
-            style="height: 100px; width: 100px"
-          />
-          <p class="py-2 text-lg font-sans text-black">username here</p>
-        </div>
-      </div>
-
-      <!-- main navigation -->
-      <div class="flex flex-col text-center">
-        <router-link
-          class="
-            px-4
-            py-2
-            hover:bg-gray-800
-            text-gray-900
-            font-bold
-            hover:text-white
-            text-xl
-          "
-          :to="{ name: 'Home' }"
-          >Menu Item
-        </router-link>
-        <router-link
-          class="
-            px-4
-            py-2
-            hover:bg-gray-800
-            text-gray-900
-            font-bold
-            hover:text-white
-            text-xl
-          "
-          :to="{ name: 'Home' }"
-          >Menu Item
-        </router-link>
-        <router-link
-          class="
-            px-4
-            py-2
-            hover:bg-gray-800
-            text-gray-900
-            font-bold
-            hover:text-white
-            text-xl
-          "
-          :to="{ name: 'Home' }"
-          >Menu Item
-        </router-link>
-        <router-link
-          class="
-            px-4
-            py-2
-            hover:bg-gray-800
-            text-gray-900
-            font-bold
-            hover:text-white
-            text-xl
-          "
-          :to="{ name: 'Home' }"
-          >Menu Item
-        </router-link>
-        <router-link
-          class="
-            px-4
-            py-2
-            hover:bg-gray-800
-            text-gray-900
-            font-bold
-            hover:text-white
-            text-xl
-          "
-          :to="{ name: 'Home' }"
-          >Menu Item
-        </router-link>
-        <router-link
-          class="
-            px-4
-            py-2
-            hover:bg-gray-800
-            text-gray-900
-            font-bold
-            hover:text-white
-            text-xl
-          "
-          :to="{ name: 'Home' }"
-          >Menu Item
-        </router-link>
-        <router-link
-          class="
-            px-4
-            py-2
-            hover:bg-gray-800
-            text-gray-900
-            font-bold
-            hover:text-white
-            text-xl
-          "
-          :to="{ name: 'Home' }"
-          >Menu Item
-        </router-link>
-        <router-link
-          class="
-            px-4
-            py-2
-            hover:bg-gray-800
-            text-gray-900
-            font-bold
-            hover:text-white
-            text-xl
-          "
-          :to="{ name: 'Home' }"
-          >Menu Item
-        </router-link>
-      </div>
-    </div>
-  </nav>
+  <div>
+    <nav class="navbar">
+      <!-- menu items -->
+      <ul class="nabar-nav">
+        <li class="nav-item">
+          <a href="#"
+            ><font-awesome-icon :icon="['far', 'list-alt']" /><span
+              class="link-text"
+            >
+              Note Taking</span
+            ></a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="#"
+            ><font-awesome-icon :icon="['far', 'sticky-note']" />
+            <span class="link-text">Flashcards</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="#"
+            ><font-awesome-icon :icon="['far', 'calendar-check']" />
+            <span class="link-text">Timetables</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="#"
+            ><font-awesome-icon :icon="['far', 'clock']" />
+            <span class="link-text">Time Tracking</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a href="#"
+            ><font-awesome-icon :icon="['fas', 'bell']" />
+            <span class="link-text">Repeatitive Reminders</span></a
+          >
+        </li>
+        <li class="nav-item mt-auto">
+          <a href="#"
+            ><font-awesome-icon :icon="['far', 'user']" />
+            <span class="link-text">Profile</span></a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
 </template>
 
 <script>
@@ -137,3 +55,8 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+</style>
+ 

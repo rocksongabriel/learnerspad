@@ -4,8 +4,8 @@
     <div class="flex justify-between py-2 px-2 md:px-10 w-full">
       <div class="flex items-center space-x-7">
         <!-- logo -->
-        <div class="font-thin font-sans text-xl md:text-2xl text-white">
-          Learners<span class="text-yellow-500 font-bold">Pad</span>
+        <div class="text-xl md:text-2xl text-white font-extrabold">
+          Learners<span class="text-yellow-500 font-thin">Pad</span>
         </div>
 
         <!-- primary nav -->
@@ -103,3 +103,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+nav {
+  font-family: "Open Sans", sans-serif;
+}
+</style>

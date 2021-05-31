@@ -6,7 +6,7 @@
 
     <div class="w-full">
       <!-- top navigation bar of the dashboard -->
-      <TopNavBar />
+      <TopNavBar class="" />
 
       <!-- working area of the dashboard -->
       <div class="p-4">
@@ -31,6 +31,93 @@
         >
           Log out
         </button>
+
+        <p class="text-lg font-thin text-gray-800">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Exercitationem laborum quos error sapiente quibusdam iste maxime
+          asperiores repellat molestiae labore molestias dicta ipsum vitae atque
+          repudiandae a, voluptates accusamus est. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Minus atque minima perspiciatis impedit
+          consectetur eveniet alias, maiores nemo animi accusamus. Fugiat,
+          aperiam! Aut ratione natus voluptatum. Quisquam possimus voluptate
+          doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Aut aperiam ipsa in magni similique, debitis harum nesciunt et soluta
+          beatae obcaecati temporibus quia dicta reiciendis natus aspernatur hic
+          repudiandae earum. Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit. Beatae amet voluptates id, quas dignissimos voluptatibus
+          distinctio illo consequuntur vero atque? Aperiam, ipsa. Cupiditate
+          blanditiis eveniet officia, architecto dolorem consequatur alias?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Exercitationem laborum quos error sapiente quibusdam iste maxime
+          asperiores repellat molestiae labore molestias dicta ipsum vitae atque
+          repudiandae a, voluptates accusamus est. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Minus atque minima perspiciatis impedit
+          consectetur eveniet alias, maiores nemo animi accusamus. Fugiat,
+          aperiam! Aut ratione natus voluptatum. Quisquam possimus voluptate
+          doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Aut aperiam ipsa in magni similique, debitis harum nesciunt et soluta
+          beatae obcaecati temporibus quia dicta reiciendis natus aspernatur hic
+          repudiandae earum. Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit. Beatae amet voluptates id, quas dignissimos voluptatibus
+          distinctio illo consequuntur vero atque? Aperiam, ipsa. Cupiditate
+          blanditiis eveniet officia, architecto dolorem consequatur alias?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Exercitationem laborum quos error sapiente quibusdam iste maxime
+          asperiores repellat molestiae labore molestias dicta ipsum vitae atque
+          repudiandae a, voluptates accusamus est. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Minus atque minima perspiciatis impedit
+          consectetur eveniet alias, maiores nemo animi accusamus. Fugiat,
+          aperiam! Aut ratione natus voluptatum. Quisquam possimus voluptate
+          doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Aut aperiam ipsa in magni similique, debitis harum nesciunt et soluta
+          beatae obcaecati temporibus quia dicta reiciendis natus aspernatur hic
+          repudiandae earum. Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit. Beatae amet voluptates id, quas dignissimos voluptatibus
+          distinctio illo consequuntur vero atque? Aperiam, ipsa. Cupiditate
+          blanditiis eveniet officia, architecto dolorem consequatur alias?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Exercitationem laborum quos error sapiente quibusdam iste maxime
+          asperiores repellat molestiae labore molestias dicta ipsum vitae atque
+          repudiandae a, voluptates accusamus est. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Minus atque minima perspiciatis impedit
+          consectetur eveniet alias, maiores nemo animi accusamus. Fugiat,
+          aperiam! Aut ratione natus voluptatum. Quisquam possimus voluptate
+          doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Aut aperiam ipsa in magni similique, debitis harum nesciunt et soluta
+          beatae obcaecati temporibus quia dicta reiciendis natus aspernatur hic
+          repudiandae earum. Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit. Beatae amet voluptates id, quas dignissimos voluptatibus
+          distinctio illo consequuntur vero atque? Aperiam, ipsa. Cupiditate
+          blanditiis eveniet officia, architecto dolorem consequatur alias?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Exercitationem laborum quos error sapiente quibusdam iste maxime
+          asperiores repellat molestiae labore molestias dicta ipsum vitae atque
+          repudiandae a, voluptates accusamus est. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Minus atque minima perspiciatis impedit
+          consectetur eveniet alias, maiores nemo animi accusamus. Fugiat,
+          aperiam! Aut ratione natus voluptatum. Quisquam possimus voluptate
+          doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Aut aperiam ipsa in magni similique, debitis harum nesciunt et soluta
+          beatae obcaecati temporibus quia dicta reiciendis natus aspernatur hic
+          repudiandae earum. Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit. Beatae amet voluptates id, quas dignissimos voluptatibus
+          distinctio illo consequuntur vero atque? Aperiam, ipsa. Cupiditate
+          blanditiis eveniet officia, architecto dolorem consequatur alias?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Exercitationem laborum quos error sapiente quibusdam iste maxime
+          asperiores repellat molestiae labore molestias dicta ipsum vitae atque
+          repudiandae a, voluptates accusamus est. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Minus atque minima perspiciatis impedit
+          consectetur eveniet alias, maiores nemo animi accusamus. Fugiat,
+          aperiam! Aut ratione natus voluptatum. Quisquam possimus voluptate
+          doloribus. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          Aut aperiam ipsa in magni similique, debitis harum nesciunt et soluta
+          beatae obcaecati temporibus quia dicta reiciendis natus aspernatur hic
+          repudiandae earum. Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit. Beatae amet voluptates id, quas dignissimos voluptatibus
+          distinctio illo consequuntur vero atque? Aperiam, ipsa. Cupiditate
+          blanditiis eveniet officia, architecto dolorem consequatur alias?
+        </p>
       </div>
     </div>
   </div>

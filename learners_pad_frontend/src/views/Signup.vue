@@ -2,7 +2,7 @@
   <div class="mt-12 md:mt-24">
     <form @submit.prevent class="flex justify-around">
       <div
-        class="p-8 md:px-12 md:py-8 bg-white shadow-2xl w-4/5 md:w-3/5 lg:w-2/5"
+        class="p-8 md:px-12 md:py-8 bg-white shadow-2xl w-4/5 md:w-3/5 lg:w-1/3"
       >
         <!-- The avatar -->
         <div class="flex justify-around my-2">

@@ -12,7 +12,7 @@ import {
   faTwitter,
   faDev,
 } from "@fortawesome/free-brands-svg-icons";
-import { faBell } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faHome } from "@fortawesome/free-solid-svg-icons";
 import {
   faStickyNote,
   faCalendarCheck,
@@ -23,7 +23,15 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(faGithub, faLinkedin, faTwitter, faDev);
-library.add(faBell, faStickyNote, faCalendarCheck, faUser, faClock, faListAlt);
+library.add(
+  faBell,
+  faStickyNote,
+  faCalendarCheck,
+  faUser,
+  faClock,
+  faListAlt,
+  faHome
+);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

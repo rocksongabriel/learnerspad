@@ -4,7 +4,7 @@
     <!-- TODO - make the navbars mobile responsive -->
     <SideNavBar />
 
-    <div class="w-full">
+    <div class="w-full ml-20">
       <!-- top navigation bar of the dashboard -->
       <TopNavBar class="" />
 

@@ -3,7 +3,7 @@
     <nav class="navbar">
       <!-- menu items -->
       <ul class="navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item logo">
           <a href="#" class="nav-link"
             ><font-awesome-icon :icon="['fas', 'home']" /><span
               class="link-text"
@@ -12,7 +12,7 @@
             ></a
           >
         </li>
-        <hr class="hidden md:block border-2 border-gray-500 w-full">
+        <hr class="hidden sm:block border-2 border-gray-500 w-full" />
         <li class="nav-item">
           <a href="#" class="nav-link"
             ><font-awesome-icon :icon="['far', 'list-alt']" />
@@ -70,9 +70,19 @@ export default {
   --secondary-background: rgba(15, 22, 37);
 }
 
+/* logo */
+.logo {
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.logo svg {
+  color: white;
+}
+
 .navbar {
-  height: 100vh;
   width: 5rem;
+  height: 100vh;
   position: fixed;
   background: rgba(15, 22, 37);
   color: white;
@@ -123,10 +133,6 @@ export default {
   margin-left: 0.8rem;
 }
 
-.navbar:hover {
-  width: 16rem;
-}
-
 .navbar:hover .link-text {
   display: block;
 }
@@ -137,5 +143,51 @@ svg {
 
 svg {
   transition: 600ms;
+}
+
+/* Large Screens */
+@media only screen and (min-width: 640px) {
+  .navbar {
+    width: 5rem;
+    height: 100vh;
+    top: 0;
+  }
+
+  .navbar:hover {
+    width: 16rem;
+  }
+
+  .navbar:hover .link-text {
+    display: inline;
+    transition: opacity 600ms;
+  }
+}
+
+/* Small screens */
+@media only screen and (max-width: 640px) {
+  .navbar {
+    bottom: 0;
+    width: 100vw;
+    height: 4rem;
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .nav-link {
+    justify-content: center;
+  }
+
+  .navbar:hover .link-text {
+    display: none;
+  }
+
+  /* hide some of the nav items */
+  .nav-item:first-child,
+  .nav-item:last-child {
+    display: none;
+  }
 }
 </style>

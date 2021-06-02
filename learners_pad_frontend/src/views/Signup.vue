@@ -92,39 +92,31 @@
         <!-- account type -->
         <div class="my-3">
           <label for="account_type" class="form-label-1">Account type</label>
-          <div class="flex justify-around mt-2">
+          <div class="flex justify-between mt-2">
             <button
               class="
-                px-6
-                py-2
-                text-lg
-                border-2 border-purple-600
-                text-gray-900
-                font-bold
-                rounded-md
+                border-purple-600
                 hover:bg-purple-600
                 bg-purple-600
                 hover:text-white
+                user-type-btn
               "
               id="student_type_btn"
               @click="setStudentUserType()"
+              style="width: 47.5%"
             >
               Student
             </button>
             <button
               class="
-                px-6
-                py-2
-                text-lg
-                border-2 border-blue-600
-                font-bold
-                text-gray-900
-                rounded-md
+                border-blue-600
                 hover:bg-blue-600
                 hover:text-white
+                user-type-btn
               "
               id="developer_type_btn"
               @click="setDeveloperUserType()"
+              style="width: 47.5%"
             >
               Developer
             </button>
@@ -291,10 +283,16 @@ export default {
           this.loading = false;
         }
       }
-      console.log(oldVal)
+      console.log(oldVal);
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+/* .user-type-btn {
+  color: #333;
+  box-shadow: -3px 3px orange, -2px 2px orange, -1px 1px orange;
+  border: 1px solid orange;
+} */
+</style>

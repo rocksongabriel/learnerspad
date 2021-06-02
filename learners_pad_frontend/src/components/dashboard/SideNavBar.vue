@@ -180,13 +180,26 @@ svg {
     justify-content: center;
   }
 
+  .nav-link svg {
+    min-width: 2rem;
+    margin: 0 1.2rem;
+    font-size: 1.3rem;
+  }
+
   .navbar:hover .link-text {
     display: none;
   }
+}
 
-  /* hide some of the nav items */
-  .nav-item:first-child,
-  .nav-item:last-child {
+/* hide some of the icons on smaller screens */
+@media only screen and (max-width: 499px) {
+  .nav-item:last-child,
+  .nav-item:nth-last-child(2) {
+    display: none;
+  }
+}
+@media only screen and (max-width: 379px) {
+  .nav-item:nth-last-child(3) {
     display: none;
   }
 }

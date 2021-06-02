@@ -70,7 +70,14 @@
           </p>
         </div>
 
-        <button class="form-btn-1" @click="login()">Login</button>
+        <button class="form-btn-1" @click="login()">
+          <font-awesome-icon
+            v-if="loading"
+            class="animate-spin mr-2"
+            :icon="['fas', 'spinner']"
+          />
+          Login
+        </button>
         <div class="flex justify-around">
           <router-link
             :to="{ name: 'Signup' }"
@@ -87,7 +94,7 @@
 
 <script>
 import { required } from "vuelidate/lib/validators";
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "Login",
@@ -98,12 +105,15 @@ export default {
         password: "",
       },
       submitted: false,
+      loading: false,
     };
   },
   computed: {
     ...mapGetters(["userErrorMessages"]),
   },
   methods: {
+    ...mapMutations(["REMOVE_ERROR_MESSAGES"]),
+
     async login() {
       // set submitted to true
       this.submitted = true;
@@ -114,6 +124,8 @@ export default {
       loginFormData.set("password", this.loginForm.password);
 
       if (!this.$v.$error) {
+        this.loading = true; // set loading to true
+        this.REMOVE_ERROR_MESSAGES(); // remove any existing errors in store
         try {
           await this.$store.dispatch("login", loginFormData);
         } catch (error) {
@@ -126,6 +138,19 @@ export default {
     loginForm: {
       username: { required },
       password: { required },
+    },
+  },
+  mounted() {
+    this.REMOVE_ERROR_MESSAGES(); // remove error messages from store
+  },
+  watch: {
+    userErrorMessages: function (newVal, oldVal) {
+      for (let error in newVal) {
+        if (error) {
+          this.loading = false;
+        }
+      }
+      console.log(oldVal)
     },
   },
 };

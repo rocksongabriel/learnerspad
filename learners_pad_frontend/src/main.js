@@ -5,14 +5,20 @@ import store from "./store";
 import Vuelidate from "vuelidate";
 import "./assets/tailwind.css";
 import axios from "axios";
-import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  library
+} from "@fortawesome/fontawesome-svg-core";
 import {
   faGithub,
   faLinkedin,
   faTwitter,
   faDev,
 } from "@fortawesome/free-brands-svg-icons";
-import { faBell, faHome } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBell,
+  faHome,
+  faSpinner
+} from "@fortawesome/free-solid-svg-icons";
 import {
   faStickyNote,
   faCalendarCheck,
@@ -20,7 +26,9 @@ import {
   faClock,
   faListAlt,
 } from "@fortawesome/free-regular-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import {
+  FontAwesomeIcon
+} from "@fortawesome/vue-fontawesome";
 
 library.add(faGithub, faLinkedin, faTwitter, faDev);
 library.add(
@@ -30,7 +38,8 @@ library.add(
   faUser,
   faClock,
   faListAlt,
-  faHome
+  faHome,
+  faSpinner
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);

@@ -56,15 +56,18 @@
     <div
       class="
         px-1
+        pb-2
         hidden
         space-y-3
-        text-2xl
+        text-xl
         md:hidden
         bg-gray-900
         text-white
         mobile-menu
+        text-center
       "
     >
+      <hr class="border-2 border-gray-300" />
       <router-link
         class="hover:bg-gray-700 p-2"
         :to="{ name: 'Home' }"
@@ -78,7 +81,7 @@
         >features</router-link
       >
       <router-link
-        class="hover:bg-gray-700 p-2"
+        class="hover:bg-gray-700 p-2 mb-2"
         :to="{ name: 'Login' }"
         @click.native="toggleMenu()"
         >login</router-link
@@ -108,4 +111,9 @@ export default {
 nav {
   font-family: "Open Sans", sans-serif;
 }
+
+.mobile-menu {
+  transition: all 500ms ease;
+}
+
 </style>

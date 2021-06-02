@@ -182,6 +182,10 @@
         </div>
 
         <button class="form-btn-2" type="submit" @click="signup()">
+          <font-awesome-icon
+            class="animate-spin mr-2"
+            :icon="['fas', 'spinner']"
+          />
           Signup
         </button>
 

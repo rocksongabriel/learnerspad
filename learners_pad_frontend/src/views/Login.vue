@@ -70,17 +70,15 @@
           </p>
         </div>
 
-        <div class="my-2">
-          <button class="form-btn-1" @click="login()">Login</button>
-          <div class="flex justify-around">
-            <router-link
-              :to="{ name: 'Signup' }"
-              class="text-blue-800 text-xl mr-2"
-              >Create account</router-link
-            >
-            |
-            <a href="#" class="text-blue-800 text-xl ml-2">Forgot Password</a>
-          </div>
+        <button class="form-btn-1" @click="login()">Login</button>
+        <div class="flex justify-around">
+          <router-link
+            :to="{ name: 'Signup' }"
+            class="text-blue-800 text-xl mr-2"
+            >Create account</router-link
+          >
+          |
+          <a href="#" class="text-blue-800 text-xl ml-2">Forgot Password</a>
         </div>
       </div>
     </form>

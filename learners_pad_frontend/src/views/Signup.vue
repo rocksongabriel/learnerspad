@@ -181,16 +181,14 @@
           </div>
         </div>
 
-        <div class="">
-          <button class="form-btn-2" type="submit" @click="signup()">
-            Signup
-          </button>
+        <button class="form-btn-2" type="submit" @click="signup()">
+          Signup
+        </button>
 
-          <div class="flex justify-around">
-            <router-link class="text-blue-800 text-xl" :to="{ name: 'Login' }"
-              >already having an account?</router-link
-            >
-          </div>
+        <div class="flex justify-around">
+          <router-link class="text-blue-800 text-xl" :to="{ name: 'Login' }"
+            >already having an account?</router-link
+          >
         </div>
       </div>
     </form>

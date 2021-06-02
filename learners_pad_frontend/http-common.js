@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://192.168.43.29:8000/";
+axios.defaults.baseURL = "http://localhost:8000/";
 
 const jwtInterceptor = axios.create({});
 

@@ -1,15 +1,15 @@
 <template>
   <nav class="bg-gray-900 shadow-md">
     <!-- container for nav -->
-    <div class="flex justify-between py-2 px-2 md:px-10 w-full">
+    <div class="flex justify-between py-4 px-2 md:px-10 w-full">
       <div class="flex items-center space-x-7">
         <!-- logo -->
-        <div class="text-xl md:text-2xl text-white font-extrabold">
+        <div class="text-white text-xl font-bold">
           Learners<span class="text-yellow-500 font-thin">Pad</span>
         </div>
 
         <!-- primary nav -->
-        <div class="space-x-3 text-xl text-gray-300 hidden md:flex">
+        <div class="space-x-3 text-gray-300 hidden md:flex">
           <router-link class="hover:text-white" :to="{ name: 'Home' }"
             >home</router-link
           >
@@ -20,7 +20,38 @@
       </div>
 
       <!-- secondary nav -->
-      <div class="flex items-center space-x-3 text-xl text-gray-300">
+      <!-- show this if the user is authenticated -->
+      <div
+        class="flex items-center space-x-3 text-gray-200"
+        v-if="isAuthenticated"
+      >
+        <router-link
+          class="hover:text-white hidden md:flex"
+          :to="{ name: 'Dashboard' }"
+          >Dashboard</router-link
+        >
+        <button
+          class="
+            p-2
+            bg-red-500
+            hover:bg-red-600
+            text-black
+            font-bold
+            rounded-md
+            shadow-lg
+          "
+        >
+          sign out
+        </button>
+
+        <!-- mobile nav button -->
+        <div @click="toggleMenu()">
+          <MobileNavButton />
+        </div>
+      </div>
+
+      <!-- show this if the user is not authenticated -->
+      <div class="flex items-center space-x-3 text-gray-300" v-else>
         <router-link
           class="hover:text-white hidden md:flex"
           :to="{ name: 'Login' }"
@@ -42,12 +73,8 @@
           >signup</router-link
         >
         <!-- mobile nav button -->
-        <div class="space-y-1.5 cursor-pointer md:hidden" @click="toggleMenu()">
-          <div class="h-0.5 w-7 bg-white"></div>
-          <div class="flex justify-end">
-            <div class="h-0.5 w-4 bg-white"></div>
-          </div>
-          <div class="h-0.5 w-7 bg-white"></div>
+        <div @click="toggleMenu()">
+          <MobileNavButton />
         </div>
       </div>
     </div>
@@ -91,10 +118,19 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import MobileNavButton from "../website/buttons/MobileNavButton";
+
 export default {
   name: "Navbar",
   data() {
     return {};
+  },
+  components: {
+    MobileNavButton,
+  },
+  computed: {
+    ...mapGetters(["isAuthenticated"]),
   },
   methods: {
     toggleMenu() {
@@ -115,5 +151,4 @@ nav {
 .mobile-menu {
   transition: all 500ms ease;
 }
-
 </style>

@@ -183,6 +183,7 @@
 
         <button class="form-btn-2" type="submit" @click="signup()">
           <font-awesome-icon
+            v-if="loading"
             class="animate-spin mr-2"
             :icon="['fas', 'spinner']"
           />
@@ -201,7 +202,7 @@
 
 <script>
 import { required, email, minLength } from "vuelidate/lib/validators";
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "Signup",
@@ -214,6 +215,7 @@ export default {
         user_type: "",
       },
       submitted: false,
+      loading: false,
     };
   },
   computed: {
@@ -231,6 +233,8 @@ export default {
     },
   },
   methods: {
+    ...mapMutations(["REMOVE_ERROR_MESSAGES"]),
+
     async signup() {
       let signupFormData = new FormData();
       signupFormData.set("username", this.signupForm.username);
@@ -242,6 +246,8 @@ export default {
       this.$v.$touch();
 
       if (!this.$v.$error) {
+        this.loading = true; // set loading to true
+        this.REMOVE_ERROR_MESSAGES(); // remove any existing errors in store
         try {
           await this.$store.dispatch("signup", signupFormData);
         } catch (error) {
@@ -276,6 +282,17 @@ export default {
   },
   mounted() {
     this.signupForm.user_type = "student";
+    this.REMOVE_ERROR_MESSAGES(); // remove error messages from store
+  },
+  watch: {
+    userErrorMessages: function (newVal, oldVal) {
+      for (let error in newVal) {
+        if (error) {
+          this.loading = false;
+        }
+      }
+      console.log(oldVal)
+    },
   },
 };
 </script>

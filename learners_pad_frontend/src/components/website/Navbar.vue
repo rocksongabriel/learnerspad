@@ -26,28 +26,25 @@
         v-if="isAuthenticated"
       >
         <router-link
-          class="hover:text-white hidden md:flex"
-          :to="{ name: 'Dashboard' }"
-          >Dashboard</router-link
-        >
-        <button
           class="
             p-2
-            bg-red-500
-            hover:bg-red-600
+            bg-blue-500
+            hover:bg-blue-600
             text-black
             font-bold
             rounded-md
             shadow-lg
           "
-        >
-          sign out
-        </button>
+          :to="{ name: 'Dashboard' }"
+          >Dashboard<font-awesome-icon
+            class="ml-2 text-gray-800 text-lg animate-pulse"
+            :icon="['fas', 'arrow-right']"
+        /></router-link>
 
         <!-- mobile nav button -->
-        <div @click="toggleMenu()">
+        <!-- <div @click="toggleMenu()">
           <MobileNavButton />
-        </div>
+        </div> -->
       </div>
 
       <!-- show this if the user is not authenticated -->

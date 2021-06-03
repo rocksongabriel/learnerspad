@@ -17,7 +17,8 @@ import {
 import {
   faBell,
   faHome,
-  faSpinner
+  faSpinner,
+  faArrowRight
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faStickyNote,
@@ -39,7 +40,8 @@ library.add(
   faClock,
   faListAlt,
   faHome,
-  faSpinner
+  faSpinner,
+  faArrowRight
 );
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);

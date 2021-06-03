@@ -40,7 +40,7 @@
         <li class="nav-item">
           <a href="#" class="nav-link"
             ><font-awesome-icon :icon="['fas', 'bell']" />
-            <span class="link-text">Repeatitive Reminders</span></a
+            <span class="link-text">Reminders</span></a
           >
         </li>
         <li class="nav-item">

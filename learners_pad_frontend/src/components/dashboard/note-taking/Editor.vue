@@ -3,10 +3,8 @@
     <vue-editor
       v-model="content"
       :editor-toolbar="customToolbar"
-      class="border-gray-300 shadow-xl"
+      class="shadow-2xl border-none"
     />
-
-    <div>{{ content }}</div>
   </div>
 </template>
 
@@ -27,6 +25,7 @@ export default {
         [{ header: [false, 1, 2, 3, 4, 5, 6] }],
         [{ color: [] }, { background: [] }],
         ["bold", "italic", "underline"],
+        ["code"],
         [
           { align: "" },
           { align: "center" },
@@ -40,3 +39,7 @@ export default {
   },
 };
 </script>
+
+<style>
+
+</style>

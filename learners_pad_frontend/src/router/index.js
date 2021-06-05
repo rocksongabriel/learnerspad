@@ -8,38 +8,43 @@ import store from "@/store/index";
 
 Vue.use(VueRouter);
 
-const routes = [
-  {
+const routes = [{
     path: "/",
     name: "Home",
     component: Home,
-    children: [
-      {
+    children: [{
         path: "/login",
         name: "Login",
         component: () => {
-          return import(/* webpackChunkName: "login" */ "../views/Login.vue");
+          return import( /* webpackChunkName: "login" */ "../views/Login.vue");
         },
       },
       {
         path: "/signup",
         name: "Signup",
         component: () => {
-          return import(/* webpackChunkName: "signup" */ "../views/Signup.vue");
+          return import( /* webpackChunkName: "signup" */ "../views/Signup.vue");
         },
       },
     ]
   },
-  
+
   {
     path: "/user/dashboard",
     name: "Dashboard",
     component: () => {
-      return import(/* webpackChunkName: "dashboard" */ "../views/Dashboard");
+      return import( /* webpackChunkName: "dashboard" */ "../views/Dashboard");
     },
     meta: {
       requiresAuth: true,
     },
+    children: [{
+      path: "profile",
+      name: "UserProfile",
+      component: () => {
+        return import( /* webpackChunkName: "dashboard" */ "../views/dashboard/Profile");
+      }
+    }]
   },
 ];
 
@@ -54,7 +59,9 @@ router.beforeEach((to, from, next) => {
 
   if (requiresAuth && !store.getters.isAuthenticated) {
     // if requires auth and current user data is not filled in the store
-    next({ name: "Login" });
+    next({
+      name: "Login"
+    });
   } else {
     next();
   }

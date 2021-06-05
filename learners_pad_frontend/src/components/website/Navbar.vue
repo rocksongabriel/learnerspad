@@ -4,9 +4,14 @@
     <div class="flex justify-between py-4 px-2 md:px-10 w-full">
       <div class="flex items-center space-x-7">
         <!-- logo -->
-        <div class="text-white text-xl font-bold">
-          Learners<span class="text-yellow-500 font-thin">Pad</span>
-        </div>
+        <router-link :to="{ name: 'Home' }" class="font-bold text-yellow-500">
+          <font-awesome-icon
+            :icon="['fas', 'graduation-cap']"
+            class="scale-200 text-2xl text-white"
+            style="transform: rotate(-45deg)"
+          />
+          <span class="md:text-xl">learnerspad</span></router-link
+        >
 
         <!-- primary nav -->
         <div class="space-x-3 text-gray-300 hidden md:flex">

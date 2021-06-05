@@ -44,9 +44,9 @@
           >
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link"
+          <router-link :to="{ name: 'UserProfile' }" href="#" class="nav-link"
             ><font-awesome-icon :icon="['far', 'user']" />
-            <span class="link-text">Profile</span></a
+            <span class="link-text">Profile</span></router-link
           >
         </li>
       </ul>

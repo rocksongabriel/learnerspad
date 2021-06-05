@@ -87,6 +87,7 @@ export default {
   background: rgba(15, 22, 37);
   color: white;
   transition: width 200ms ease;
+  z-index: 99999;
 }
 
 .navbar-nav {

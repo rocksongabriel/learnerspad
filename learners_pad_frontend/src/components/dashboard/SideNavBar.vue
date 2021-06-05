@@ -14,37 +14,37 @@
         </li>
         <hr class="hidden sm:block border-2 border-gray-500 w-full" />
         <li class="nav-item">
-          <a href="#" class="nav-link"
+          <router-link class="nav-link" :to="{ name: 'NoteTaking' }"
             ><font-awesome-icon :icon="['far', 'list-alt']" />
-            <span class="link-text">Note Taking</span></a
+            <span class="link-text">Note Taking</span></router-link
           >
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link"
+          <router-link :to="{ name: 'FlashCards' }" class="nav-link"
             ><font-awesome-icon :icon="['far', 'sticky-note']" />
-            <span class="link-text">Flashcards</span></a
+            <span class="link-text">Flashcards</span></router-link
           >
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link"
+          <router-link class="nav-link" :to="{ name: 'Timetables' }"
             ><font-awesome-icon :icon="['far', 'calendar-check']" />
-            <span class="link-text">Timetables</span></a
+            <span class="link-text">Timetables</span></router-link
           >
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link"
+          <router-link :to="{ name: 'TimeTracking' }" class="nav-link"
             ><font-awesome-icon :icon="['far', 'clock']" />
-            <span class="link-text">Time Tracking</span></a
+            <span class="link-text">Time Tracking</span></router-link
           >
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link"
+          <router-link class="nav-link" :to="{ name: 'Reminders' }"
             ><font-awesome-icon :icon="['fas', 'bell']" />
-            <span class="link-text">Reminders</span></a
+            <span class="link-text">Reminders</span></router-link
           >
         </li>
-        <li class="nav-item">
-          <router-link :to="{ name: 'UserProfile' }" href="#" class="nav-link"
+        <li class="nav-item cursor-pointer">
+          <router-link :to="{ name: 'UserProfile' }" class="nav-link"
             ><font-awesome-icon :icon="['far', 'user']" />
             <span class="link-text">Profile</span></router-link
           >

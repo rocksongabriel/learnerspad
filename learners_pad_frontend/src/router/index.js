@@ -39,12 +39,48 @@ const routes = [{
       requiresAuth: true,
     },
     children: [{
-      path: "profile",
-      name: "UserProfile",
-      component: () => {
-        return import( /* webpackChunkName: "dashboard" */ "../views/dashboard/Profile");
+        path: "profile",
+        name: "UserProfile",
+        component: () => {
+          return import( /* webpackChunkName: "dashboard" */ "../views/dashboard/Profile");
+        }
+      },
+      {
+        path: "note-taking",
+        name: "NoteTaking",
+        component: () => {
+          return import( /* webpackChunkName: "dashboard" */ "../views/dashboard/NoteTaking");
+        }
+      },
+      {
+        path: "flashcards",
+        name: "FlashCards",
+        component: () => {
+          return import( /* webpackChunkName: "dashboard" */ "../views/dashboard/FlashCards");
+        }
+      },
+      {
+        path: "reminders",
+        name: "Reminders",
+        component: () => {
+          return import( /* webpackChunkName: "dashboard" */ "../views/dashboard/Reminders");
+        }
+      },
+      {
+        path: "timetables",
+        name: "Timetables",
+        component: () => {
+          return import( /* webpackChunkName: "dashboard" */ "../views/dashboard/TimeTables");
+        }
+      },
+      {
+        path: "time-tracking",
+        name: "TimeTracking",
+        component: () => {
+          return import( /* webpackChunkName: "dashboard" */ "../views/dashboard/TimeTracking");
+        }
       }
-    }]
+    ]
   },
 ];
 

@@ -1,29 +1,7 @@
 <template>
   <div>
-    <h1 class="text-center text-red-600 font-bold text-2xl">Notes</h1>
-
+    <!-- button to show or hide the editor -->
     <div class="my-3 space-x-3 flex justify-end">
-      <transition
-        enter-active-class="animate__animated animate__fadeInRightBig"
-        leave-active-class="animate__animated animate__fadeOutRightBig"
-      >
-        <button
-          class="
-            py-2
-            px-4
-            bg-red-600
-            hover:bg-red-700
-            text-black
-            font-bold
-            rounded-lg
-            focus:outline-none
-          "
-          v-if="show_editor"
-          @click="show_editor = !show_editor"
-        >
-          Cancel
-        </button>
-      </transition>
       <button
         class="
           py-2
@@ -36,16 +14,66 @@
           rounded-lg
         "
         @click="show_editor = !show_editor"
+        v-if="!show_editor"
       >
         Create New Note
       </button>
+      <button
+        class="
+          py-2
+          px-4
+          bg-red-600
+          hover:bg-red-500
+          text-black
+          font-bold
+          focus:outline-none
+          rounded-lg
+        "
+        @click="show_editor = !show_editor"
+        v-else
+      >
+        Cancel
+      </button>
     </div>
 
+    <!-- The editor to add notes -->
     <transition
-      enter-active-class="animate__animated animate__fadeInRightBig"
-      leave-active-class="animate__animated animate__fadeOutRightBig"
+      enter-active-class="animate__animated animate__fadeIn"
+      leave-active-class="animate__animated animate__fadeOut"
     >
-      <Editor v-if="show_editor" />
+      <div>
+        <Editor v-if="show_editor" />
+      </div>
+    </transition>
+
+    <!-- The notes that have been created -->
+    <transition
+      enter-active-class="animate__animated animate__fadeInDown"
+      leave-active-class="animate__animated animate__fadeInUp"
+    >
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 my-8 mb-32 md:mb-0">
+        <div
+          v-for="note in notes"
+          :key="note.created"
+          class="
+            bg-gray-300
+            p-4
+            rounded-md
+            shadow-xl
+            transform
+            hover:scale-105
+            hover:bg-gray-800
+            hover:text-gray-200
+            cursor-pointer
+          "
+        >
+          <p class="font-bold text-xl">{{ note.title }}</p>
+          <p class="font-medium text-sm text-right">
+            {{ note.created }}
+          </p>
+          <p class="pt-3">{{ note.content | truncate(200) }}</p>
+        </div>
+      </div>
     </transition>
   </div>
 </template>
@@ -63,7 +91,39 @@ export default {
   data() {
     return {
       show_editor: false,
+      notes: [
+        {
+          title: "This is the first note",
+          created: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+          content:
+            "This is the content of the note This is the content of the note This is the content of the note This is the content of the note This is the content of the note",
+        },
+        {
+          title: "This is the first note",
+          created: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+          content: "This is the content of the note",
+        },
+        {
+          title: "This is the first note",
+          created: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+          content: "This is the content of the note",
+        },
+        {
+          title: "This is the first note",
+          created: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+          content: "This is the content of the note",
+        },
+      ],
     };
+  },
+
+  filters: {
+    truncate(value, limit) {
+      if (value.length > limit) {
+        value = value.substring(0, limit - 3);
+      }
+      return value;
+    },
   },
 };
 </script>

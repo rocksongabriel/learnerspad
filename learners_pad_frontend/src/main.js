@@ -45,6 +45,7 @@ library.add(
   faArrowRight,
   faGraduationCap
 );
+import "animate.css";
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

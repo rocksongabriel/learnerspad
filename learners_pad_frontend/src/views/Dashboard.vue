@@ -1,7 +1,6 @@
 <template>
   <div class="flex">
     <!-- side navigation bar -->
-    <!-- TODO - make the navbars mobile responsive -->
     <SideNavBar />
 
     <div class="w-full sm:ml-20">
@@ -10,8 +9,13 @@
 
       <!-- working area of the dashboard -->
       <div class="px-2 md:px-8 py-4">
-        <router-view />
-        <!-- load child routes here -->
+        <transition
+          mode="out-in"
+          enter-active-class="animate__animated animate__fadeIn animate__faster"
+          leave-active-class="animate__animated animate__fadeOut animate__faster"
+        >
+          <router-view /><!-- load child routes here -->
+        </transition>
       </div>
     </div>
   </div>

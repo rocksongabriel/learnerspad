@@ -3,21 +3,28 @@
     <h1 class="text-center text-red-600 font-bold text-2xl">Notes</h1>
 
     <div class="my-3 space-x-3 flex justify-end">
-      <button
-        class="
-          py-2
-          px-4
-          bg-red-600
-          hover:bg-red-700
-          text-black
-          font-bold
-          rounded-lg
-          animate__animated animate__zoomIn
-        "
-        v-if="show_editor"
+      <transition
+        enter-active-class="animate__animated animate__fadeInRightBig"
+        leave-active-class="animate__animated animate__fadeOutRightBig"
       >
-        Cancel</button
-      ><button
+        <button
+          class="
+            py-2
+            px-4
+            bg-red-600
+            hover:bg-red-700
+            text-black
+            font-bold
+            rounded-lg
+            focus:outline-none
+          "
+          v-if="show_editor"
+          @click="show_editor = !show_editor"
+        >
+          Cancel
+        </button>
+      </transition>
+      <button
         class="
           py-2
           px-4
@@ -34,7 +41,12 @@
       </button>
     </div>
 
-    <Editor v-if="show_editor" />
+    <transition
+      enter-active-class="animate__animated animate__fadeInRightBig"
+      leave-active-class="animate__animated animate__fadeOutRightBig"
+    >
+      <Editor v-if="show_editor" />
+    </transition>
   </div>
 </template>
 
@@ -55,3 +67,5 @@ export default {
   },
 };
 </script>
+
+<style scoped></style>

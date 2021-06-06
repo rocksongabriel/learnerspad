@@ -67,11 +67,13 @@
             cursor-pointer
           "
         >
-          <p class="font-bold text-xl">{{ note.title }}</p>
+          <p class="font-bold text-xl">{{ note.title | truncate(40) }}</p>
           <p class="font-medium text-sm text-right">
             {{ note.created }}
           </p>
-          <p class="pt-3">{{ note.content | truncate(200) }}</p>
+          <p class="pt-3" v-html="note.content">
+            {{ note.content | truncate(200) }}
+          </p>
         </div>
       </div>
     </transition>
@@ -80,6 +82,7 @@
 
 <script>
 import Editor from "../../components/dashboard/note-taking/Editor";
+import { mapGetters } from "vuex";
 
 export default {
   name: "NoteTaking",
@@ -91,36 +94,17 @@ export default {
   data() {
     return {
       show_editor: false,
-      notes: [
-        {
-          title: "This is the first note",
-          created: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
-          content:
-            "This is the content of the note This is the content of the note This is the content of the note This is the content of the note This is the content of the note",
-        },
-        {
-          title: "This is the first note",
-          created: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
-          content: "This is the content of the note",
-        },
-        {
-          title: "This is the first note",
-          created: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
-          content: "This is the content of the note",
-        },
-        {
-          title: "This is the first note",
-          created: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
-          content: "This is the content of the note",
-        },
-      ],
     };
+  },
+
+  computed: {
+    ...mapGetters(["notes"]),
   },
 
   filters: {
     truncate(value, limit) {
       if (value.length > limit) {
-        value = value.substring(0, limit - 3);
+        value = value.substring(0, limit - 3) + " . . .";
       }
       return value;
     },

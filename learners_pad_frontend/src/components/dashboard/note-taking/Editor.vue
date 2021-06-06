@@ -15,11 +15,13 @@
           w-full
         "
         placeholder="Title of Note ..."
+        v-model="title"
       />
       <vue-editor
         v-model="content"
         :editor-toolbar="customToolbar"
         class="shadow-2xl border-none"
+        placeholder="Enter the content of your note here ..."
       />
 
       <!-- button to save note -->
@@ -35,6 +37,7 @@
           rounded-lg
           focus:outline-none
         "
+        @click="add_note()"
       >
         Add Note
       </button>
@@ -44,6 +47,7 @@
 
 <script>
 import { VueEditor } from "vue2-editor";
+import { mapActions } from "vuex";
 
 export default {
   name: "Editor",
@@ -55,7 +59,7 @@ export default {
   data() {
     return {
       title: "",
-      content: "This is the content",
+      content: "",
       customToolbar: [
         [{ header: [false, 1, 2, 3, 4, 5, 6] }],
         [{ color: [] }, { background: [] }],
@@ -71,6 +75,23 @@ export default {
         [{ script: "sub" }, { script: "super" }],
       ],
     };
+  },
+
+  methods: {
+    ...mapActions(["addNote"]),
+
+    // this method will add a new note
+    add_note() {
+      let note = {
+        title: this.title,
+        created: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
+        content: this.content,
+      };
+      this.addNote(note);
+
+      this.title = "";
+      this.content = "";
+    },
   },
 };
 </script>

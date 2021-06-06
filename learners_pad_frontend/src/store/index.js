@@ -1,16 +1,21 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import usersModule from "@/store/users/index.js";
+import noteTakingModule from "@/store/dashboard/note-taking/index.js";
 import createPersistedState from "vuex-persistedstate";
 import SecureLS from "secure-ls";
 
-var ls = new SecureLS({ encodingType: "aes", isCompression: false });
+var ls = new SecureLS({
+  encodingType: "aes",
+  isCompression: false,
+});
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
     usersModule,
+    noteTakingModule,
   },
   plugins: [
     createPersistedState({

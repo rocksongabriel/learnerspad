@@ -49,8 +49,17 @@ const routes = [{
         path: "note-taking",
         name: "NoteTaking",
         component: () => {
-          return import( /* webpackChunkName: "dashboard" */ "../views/dashboard/NoteTaking");
-        }
+          return import( /* webpackChunkName: "dashboard" */ "../views/dashboard/note-taking/NoteTaking");
+        },
+        children: [
+          {
+            path: ":title",
+            name: "NoteDetail",
+            component: () => {
+              return import( /* webpackChunkName: "dashboard" */ "../views/dashboard/note-taking/NoteDetail");
+            }
+          }
+        ]
       },
       {
         path: "flashcards",

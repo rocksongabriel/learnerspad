@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'users.apps.UsersConfig',
+    'notes.apps.NotesConfig',
 
     'rest_framework',
     'rest_auth',

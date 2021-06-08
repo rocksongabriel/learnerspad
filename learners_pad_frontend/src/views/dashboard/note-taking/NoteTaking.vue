@@ -6,35 +6,29 @@
       <div class="my-3 space-x-3 flex justify-end">
         <button
           class="
-            py-2
-            px-4
-            bg-blue-600
-            hover:bg-blue-500
-            text-black
+            text-gray-900
             font-bold
+            text-lg
             focus:outline-none
-            rounded-lg
+            hover:text-gray-700
           "
           @click="show_editor = !show_editor"
           v-if="!show_editor"
         >
-          Create New Note
+          <font-awesome-icon :icon="['fas', 'plus-circle']" /> Create New Note
         </button>
         <button
           class="
-            py-2
-            px-4
-            bg-red-600
-            hover:bg-red-500
-            text-black
+            text-red-600
             font-bold
+            text-lg
             focus:outline-none
-            rounded-lg
+            hover:text-red-500
           "
           @click="show_editor = !show_editor"
           v-else
         >
-          Cancel
+          <font-awesome-icon :icon="['fas', 'times-circle']" /> Cancel
         </button>
       </div>
 

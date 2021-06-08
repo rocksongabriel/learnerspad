@@ -1,7 +1,12 @@
 <template>
   <div id="app" style="scroll-behavior: smooth">
     <div>
-      <router-view />
+      <transition
+        enter-active-class="animate__animated animate__fadeIn"
+        leave-active-class="animate__animated animate__fadeOut"
+      >
+        <router-view />
+      </transition>
     </div>
   </div>
 </template>

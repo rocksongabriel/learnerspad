@@ -46,6 +46,7 @@ const routes = [{
         }
       },
       {
+        default: true,
         path: "note-taking",
         name: "NoteTaking",
         component: () => {

@@ -5,9 +5,7 @@ import store from "./store";
 import Vuelidate from "vuelidate";
 import "./assets/tailwind.css";
 import axios from "axios";
-import {
-  library
-} from "@fortawesome/fontawesome-svg-core";
+import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faGithub,
   faLinkedin,
@@ -20,6 +18,9 @@ import {
   faSpinner,
   faArrowRight,
   faGraduationCap,
+  faPlusCircle,
+  faTimesCircle,
+  faAngleDoubleLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faStickyNote,
@@ -28,9 +29,7 @@ import {
   faClock,
   faListAlt,
 } from "@fortawesome/free-regular-svg-icons";
-import {
-  FontAwesomeIcon
-} from "@fortawesome/vue-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(faGithub, faLinkedin, faTwitter, faDev);
 library.add(
@@ -43,7 +42,10 @@ library.add(
   faHome,
   faSpinner,
   faArrowRight,
-  faGraduationCap
+  faGraduationCap,
+  faPlusCircle,
+  faTimesCircle,
+  faAngleDoubleLeft
 );
 import "animate.css";
 

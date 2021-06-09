@@ -1,4 +1,3 @@
-from _pytest.tmpdir import get_user
 import pytest
 from .factories import DeveloperUserFactory, StudentUserFactory
 from .utils import get_user_data

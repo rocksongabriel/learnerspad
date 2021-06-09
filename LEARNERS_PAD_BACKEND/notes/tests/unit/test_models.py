@@ -10,10 +10,8 @@ pytestmark = pytest.mark.django_db
 
 class TestNoteObjectCreation:
 
-    def test_note_object_creation(self):
-        generated_user = StudentUserFactory.build()
-        user_data = get_user_data(generated_user)
-        owner = StudentUser.objects.create(**user_data)
+    def test_note_object_creation(self, student_user):
+        owner = StudentUser.objects.create(**student_user)
 
         generated_note = NoteFactory.build()
         data = {

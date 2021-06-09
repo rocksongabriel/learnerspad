@@ -21,25 +21,16 @@ class TestUserObjectCreation:
         assert user.type == "DEVELOPER"
 
 
-    def test_single_student_user_object_creation(self):
-        generated_user = StudentUserFactory.build()
-        user_data = get_user_data(generated_user)
-        StudentUser.objects.create(**user_data)
-
+    def test_single_student_user_object_creation(self, student_user):
+        StudentUser.objects.create(**student_user)
         assert StudentUser.objects.count() == 1
 
-    def test_created_student_user_has_specified_data(self):
-        generated_user = StudentUserFactory.build()
-        user_data = get_user_data(generated_user)
-        user = StudentUser.objects.create(**user_data)
+    def test_created_student_user_has_specified_data(self, student_user):
+        user = StudentUser.objects.create(**student_user)
+        assert user.username == student_user["username"]
 
-        assert user.username == generated_user.username
-
-    def test_type_of_created_student_user(self):
-        generated_user = StudentUserFactory.build()
-        user_data = get_user_data(generated_user)
-        user = StudentUser.objects.create(**user_data)
-
+    def test_type_of_created_student_user(self, student_user):
+        user = StudentUser.objects.create(**student_user)
         assert user.type == "STUDENT"
 
 

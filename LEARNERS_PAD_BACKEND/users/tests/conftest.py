@@ -1,5 +1,6 @@
+from _pytest.tmpdir import get_user
 import pytest
-from .factories import DeveloperUserFactory
+from .factories import DeveloperUserFactory, StudentUserFactory
 from .utils import get_user_data
 
 
@@ -14,5 +15,13 @@ def api_client():
 @pytest.fixture
 def developer_user():
     generated_user = DeveloperUserFactory.build()
+    user_data = get_user_data(generated_user)
+    return user_data
+
+
+# Student User object fixture
+@pytest.fixture
+def student_user():
+    generated_user = StudentUserFactory.build()
     user_data = get_user_data(generated_user)
     return user_data
